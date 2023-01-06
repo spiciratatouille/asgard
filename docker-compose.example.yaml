@@ -13,7 +13,7 @@ services:
       - <entertainment_folder>/tvshows:/data/movies # change me!
     ports:
       - 8096:8096
-    # restart: unless-stopped Uncomment only when you confirm everything is working
+    restart: unless-stopped
 
   # qBitorrent is used to download torrents
   qbittorrent:
@@ -29,7 +29,7 @@ services:
       - 6881:6881
       - 6881:6881/udp
       - 8080:8080
-    # restart: unless-stopped Uncomment only when you confirm everything is working
+    restart: unless-stopped
 
   # Sonarr is used to query, add downloads to the download queue and index TV shows
   sonarr:
@@ -44,7 +44,7 @@ services:
       - <entertainment_folder>/downloads:/downloads # change me!
     ports:
       - 8989:8989
-    # restart: unless-stopped Uncomment only when you confirm everything is working
+    restart: unless-stopped
 
   # Radarr is used to query, add downloads to the download queue and index Movies
   radarr:
@@ -58,7 +58,7 @@ services:
       - <entertainment_folder>/downloads:/downloads # change me!
     ports:
       - 7878:7878
-    # restart: unless-stopped Uncomment only when you confirm everything is working
+    restart: unless-stopped
 
   # Bazarr is used to download and categorize subtitles
   bazarr:
@@ -72,7 +72,7 @@ services:
       - <entertainment_folder>/tvshows:/tv # change me!
     ports:
       - 6767:6767
-    # restart: unless-stopped Uncomment only when you confirm everything is working
+    restart: unless-stopped
 
   # Jackett is our torrent indexer/searcher. Sonarr/Radarr use Jackett as a
   # source
@@ -87,4 +87,4 @@ services:
       - <entertainment_folder>/blackhole:/downloads # change me!
     ports:
       - 9117:9117
-    # restart: unless-stopped Uncomment only when you confirm everything is working
+    restart: unless-stopped
