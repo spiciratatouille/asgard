@@ -19,6 +19,9 @@ echo "We just need you to answer some questions"
 echo "===================================================="
 echo ""
 
+# ============================================================================================
+# Check all the prerequisites are installed before continuing
+# ============================================================================================
 echo "Checking prerequisites..."
 
 if command -v docker &> /dev/null; then
@@ -34,7 +37,11 @@ else
     echo "⚠ You need to have docker-compose installed and in your PATH! EXITING ⚠"
     exit 255
 fi
+# ============================================================================================
 
+# ============================================================================================
+# Gathering information
+# ============================================================================================
 read -p "Where do you want to instal the docker-compose file? [/opt/yams] : " install_location
 
 read -p "What's the user that is going to run the media server? [$USER] : " username
@@ -48,7 +55,11 @@ puid=$(id -u $username)
 pgid=$(id -g $username)
 
 echo "Configuring the docker for the user $username on \"$install_location\"..."
+# ============================================================================================
 
+# ============================================================================================
+# Actually installing everything!
+# ============================================================================================
 # Checking if the install_location exists
 [[ -f $install_location ]] || mkdir -p $install_location || (echo "You need to have permissions on the folder! EXITING" && exit 255)
 
@@ -65,3 +76,4 @@ sed -i -e "s/<your_PGID>/$pgid/g" $filename
 
 # Set entertainment_folder
 sed -i -e "s;<entertainment_folder>;$ENTERTAINMENT_FOLDER;g" $filename
+# ============================================================================================
