@@ -1,0 +1,3 @@
+#+title: YAMS: Yet Another Media Server
+
+This is my mediaserver script. A better README comming soon.

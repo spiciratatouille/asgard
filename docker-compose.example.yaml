@@ -1,0 +1,90 @@
+version: "3"
+
+services:
+  # Emby is used to serve your media to the client devices
+  emby:
+    image: ghcr.io/linuxserver/emby
+    container_name: emby
+    environment:
+      - PUID: <your_PUID>
+      - PGID: <your_PGID>
+    volumes:
+      - <entertainment_folder>/movies:/data/tvshows # change me!
+      - <entertainment_folder>/tvshows:/data/movies # change me!
+    ports:
+      - 8096:8096
+    # restart: unless-stopped Uncomment only when you confirm everything is working
+
+  # qBitorrent is used to download torrents
+  qbittorrent:
+    image: ghcr.io/linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID: <your_PUID>
+      - PGID: <your_PGID>
+      - WEB_UI_PORT: 8080
+    volumes:
+      - <entertainment_folder>/downloads:/downloads # change me!
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 8080:8080
+    # restart: unless-stopped Uncomment only when you confirm everything is working
+
+  # Sonarr is used to query, add downloads to the download queue and index TV shows
+  sonarr:
+    # Using "preview" version because "latest" doesn't work correctly
+    image: ghcr.io/linuxserver/sonarr:preview
+    container_name: sonarr
+    environment:
+      - PUID: <your_PUID>
+      - PGID: <your_PGID>
+    volumes:
+      - <entertainment_folder>/tvshows:/tv # change me!
+      - <entertainment_folder>/downloads:/downloads # change me!
+    ports:
+      - 8989:8989
+    # restart: unless-stopped Uncomment only when you confirm everything is working
+
+  # Radarr is used to query, add downloads to the download queue and index Movies
+  radarr:
+    image: ghcr.io/linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID: <your_PUID>
+      - PGID: <your_PGID>
+    volumes:
+      - <entertainment_folder>/movies:/movies # change me!
+      - <entertainment_folder>/downloads:/downloads # change me!
+    ports:
+      - 7878:7878
+    # restart: unless-stopped Uncomment only when you confirm everything is working
+
+  # Bazarr is used to download and categorize subtitles
+  bazarr:
+    image: ghcr.io/linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID: <your_PUID>
+      - PGID: <your_PGID>
+    volumes:
+      - <entertainment_folder>/movies:/movies # change me!
+      - <entertainment_folder>/tvshows:/tv # change me!
+    ports:
+      - 6767:6767
+    # restart: unless-stopped Uncomment only when you confirm everything is working
+
+  # Jackett is our torrent indexer/searcher. Sonarr/Radarr use Jackett as a
+  # source
+  jackett:
+    image: ghcr.io/linuxserver/jackett
+    container_name: jackett
+    environment:
+      - PUID: <your_PUID>
+      - PGID: <your_PGID>
+      - AUTO_UPDATE: "True"
+    volumes:
+      - <entertainment_folder>/blackhole:/downloads # change me!
+    ports:
+      - 9117:9117
+    # restart: unless-stopped Uncomment only when you confirm everything is working
