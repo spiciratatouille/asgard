@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 echo "===================================================="
 echo "                 ___           ___           ___    "
@@ -44,7 +45,7 @@ fi
 # ============================================================================================
 read -p "Where do you want to instal the docker-compose file? [/opt/yams] : " install_location
 
-read -p "What's the user that is going to run the media server? [$USER] : " username
+read -p "What's the user that is going to own the media server files? [$USER] : " username
 
 read -p "Please, input your entertainment folder: " ENTERTAINMENT_FOLDER
 
@@ -61,12 +62,12 @@ echo "Configuring the docker for the user $username on \"$install_location\"..."
 # Actually installing everything!
 # ============================================================================================
 # Checking if the install_location exists
-[[ -f $install_location ]] || mkdir -p $install_location || (echo "You need to have permissions on the folder! EXITING" && exit 255)
+[[ -f $install_location ]] || mkdir -p $install_location || (echo "You need to have permissions on the folder! (Maybe you forgot to run with sudo?)"; false)
 
 # Copy the docker-compose file from the example to the real one
 echo "Copying $filename..."
 
-cp docker-compose.example.yaml $filename
+cp docker-compose.example.yaml $filename || (echo "You need to have permissions on the folder! (Maybe you forgot to run with sudo?)"; false)
 
 # Set PUID
 sed -i -e "s/<your_PUID>/$puid/g" $filename
@@ -76,4 +77,36 @@ sed -i -e "s/<your_PGID>/$pgid/g" $filename
 
 # Set entertainment_folder
 sed -i -e "s;<entertainment_folder>;$ENTERTAINMENT_FOLDER;g" $filename
+
+read -p "Do you want to run the script now? [Y/n]: " run_now
+run_now=${run_now:-"y"}
+
+if [ $run_now == "y" ]; then
+    echo "Running the server..."
+    docker-compose -f $filename up -d
+else
+    echo "Perfect! You can run the server later using the following command:"
+    echo ""
+    echo "========================================================"
+    echo "docker-compose -f $filename up -d"
+    echo "========================================================"
+    echo ""
+fi
+
+echo "========================================================"
+echo "     _____          ___           ___           ___     "
+echo "    /  /::\        /  /\         /__/\         /  /\    "
+echo "   /  /:/\:\      /  /::\        \  \:\       /  /:/_   "
+echo "  /  /:/  \:\    /  /:/\:\        \  \:\     /  /:/ /\  "
+echo " /__/:/ \__\:|  /  /:/  \:\   _____\__\:\   /  /:/ /:/_ "
+echo " \  \:\ /  /:/ /__/:/ \__\:\ /__/::::::::\ /__/:/ /:/ /\\"
+echo "  \  \:\  /:/  \  \:\ /  /:/ \  \:\~~\~~\/ \  \:\/:/ /:/"
+echo "   \  \:\/:/    \  \:\  /:/   \  \:\  ~~~   \  \::/ /:/ "
+echo "    \  \::/      \  \:\/:/     \  \:\        \  \:\/:/  "
+echo "     \__\/        \  \::/       \  \:\        \  \::/   "
+echo "                   \__\/         \__\/         \__\/    "
+echo "========================================================"
+echo "All done!✅  Enjoy YAMS!"
+echo "========================================================"
+exit 0
 # ============================================================================================
