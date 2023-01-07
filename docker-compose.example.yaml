@@ -33,8 +33,7 @@ services:
 
   # Sonarr is used to query, add downloads to the download queue and index TV shows
   sonarr:
-    # Using "preview" version because "latest" doesn't work correctly
-    image: ghcr.io/linuxserver/sonarr:preview
+    image: ghcr.io/linuxserver/sonarr
     container_name: sonarr
     environment:
       - PUID=<your_PUID>
