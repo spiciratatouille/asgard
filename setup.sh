@@ -113,6 +113,9 @@ sed -i -e "s/<your_PGID>/$pgid/g" $filename
 # Set entertainment_folder
 sed -i -e "s;<entertainment_folder>;$entertainment_folder;g" $filename
 
+# Set yams script
+sed -i -e "s/<filename>/$filename" yams.sh
+
 send_success_message "Everything installed correctly! 🎉"
 read -p "Do you want to run the script now? [Y/n]: " run_now
 run_now=${run_now:-"y"}
@@ -158,11 +161,12 @@ if [ $run_now == "y" ]; then
     echo "========================================================"
     host_ip=$(hostname -I | awk '{ print $1 }')
     echo "Everythins should be running now! To check everything running, go to:"
-    echo "Sonarr: $host_ip:8989/"
-    echo "Radarr: $host_ip:7878/"
-    echo "Bazarr: $host_ip:6767/"
-    echo "Jackett: $host_ip:9117/"
-    echo "Emby: $host_ip:8096/"
+    echo "Sonarr: http://$host_ip:8989/"
+    echo "Radarr: http://$host_ip:7878/"
+    echo "Bazarr: http://$host_ip:6767/"
+    echo "Jackett: http://$host_ip:9117/"
+    echo "Emby: http://$host_ip:8096/"
+    echo "You might need to wait for a couple of minutes while everything gets up and running"
 else
     echo "========================================================"
     echo "Since YAMS is not running yet, to run it just execute:"

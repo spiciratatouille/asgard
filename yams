@@ -1,0 +1,14 @@
+#!/bin/bash
+set -eu
+
+if [ $1 == "restart" ]; then
+    docker-compose -f <filename> stop && docker-compose up -d
+fi
+
+if [ $1 == "stop" ]; then
+    docker-compose -f <filename> stop
+fi
+
+if [ $1 == "start" ]; then
+    docker-compose -f <filename> up -d
+fi
