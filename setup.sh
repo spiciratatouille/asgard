@@ -120,7 +120,7 @@ run_now=${run_now:-"y"}
 if [ $run_now == "y" ]; then
     echo "Running the server..."
     echo "This is going to take a while..."
-    docker-compose -f $filename up -d
+    ./run.sh $filename
 else
     echo "Perfect! You can run the server later using the following command:"
     echo ""
@@ -134,6 +134,8 @@ fi
 # ============================================================================================
 # Cleaning up...
 # ============================================================================================
+
+cp setup.sh $install_location
 
 printf "\033c"
 
