@@ -14,7 +14,7 @@ This script installs the following software:
 - [[https://www.bazarr.media/][Bazarr]]
 - [[https://github.com/Jackett/Jackett][Jackett]]
 
-Whit this combination, you can create a fully functional media server that is going to download,
+With this combination, you can create a fully functional media server that is going to download,
 categorize, subtitle and serve your favorite shows and movies.
 
 * Features
