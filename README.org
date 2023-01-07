@@ -43,6 +43,8 @@ First, you need to install:
 :ID:       1c609bfc-4e6e-4fd8-8129-1b722fd7cda8
 :END:
 Before installing, make sure you have:
+- *An installation location*: The script is going to ask you for a install location, but it will default
+  to ~/opt/yams~. Just make sure your current user has permissions to write on the selected directory.
 - *A media folder*: This is the folder where all your files are going to be downloaded and categorized. If
   you choose ~/srv/media~, the script is going to create the following folders:
   + ~/srv/media/tv~: For your TV shows
