@@ -123,5 +123,10 @@ Just let them know YAMS sent you there 😎
   + [[https://github.com/norlis][norlis]]
   + [[https://github.com/isaac152][isaac152]]
   For giving me ideas and helping me test the script
+
+** And finally:
+:PROPERTIES:
+:ID:       126d4a9c-08a5-47f4-bffb-61b251ef394c
+:END:
 - You 🫵, for being such an amazing human being, checking out my repo and (hopefully!) using it on your
   media server. Thank you! 🙇
