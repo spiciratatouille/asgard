@@ -38,7 +38,7 @@ check_dependencides() {
     if command -v $1 &> /dev/null; then
         send_success_message "$1 exists ✅ "
     else
-        send_error_message "⚠️ You need to have \"$1\" installed and in your PATH! EXITING ⚠️"
+        send_error_message "⚠️  You need to have \"$1\" installed and in your PATH! EXITING ⚠️"
     fi
 }
 
@@ -105,13 +105,13 @@ echo "Copying $filename..."
 cp docker-compose.example.yaml $filename || send_error_message "You need to have permissions on the folder! (Maybe you forgot to run with sudo?)"
 
 # Set PUID
-sed -i '' -e "s/<your_PUID>/$puid/g" $filename
+sed -i -e "s/<your_PUID>/$puid/g" $filename
 
 # Set PGID
-sed -i '' -e "s/<your_PGID>/$pgid/g" $filename
+sed -i -e "s/<your_PGID>/$pgid/g" $filename
 
 # Set entertainment_folder
-sed -i '' -e "s;<entertainment_folder>;$entertainment_folder;g" $filename
+sed -i -e "s;<entertainment_folder>;$entertainment_folder;g" $filename
 
 send_success_message "Everything installed correctly! 🎉"
 read -p "Do you want to run the script now? [Y/n]: " run_now
@@ -136,8 +136,6 @@ fi
 # ============================================================================================
 
 printf "\033c"
-mv /tmp/yams/setup.sh $install_location &>/dev/null || true
-mv /tmp/yams/docker-compose.example.yaml $install_location &>/dev/null || true
 
 echo "========================================================"
 echo "     _____          ___           ___           ___     "
@@ -154,6 +152,11 @@ echo "                   \__\/         \__\/         \__\/    "
 echo "========================================================"
 send_success_message "All done!✅  Enjoy YAMS!"
 echo "You can check the installation on $install_location"
+if [ ! $run_now == "y" ]; then
+    echo "========================================================"
+    echo "Since YAMS is not running yet, to run it just execute:"
+    echo "docker-compose -f $filename up -d"
+fi
 echo "========================================================"
 exit 0
 # ============================================================================================
