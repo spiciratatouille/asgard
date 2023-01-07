@@ -6,8 +6,8 @@ services:
     image: ghcr.io/linuxserver/emby
     container_name: emby
     environment:
-      - PUID: <your_PUID>
-      - PGID: <your_PGID>
+      - PUID=<your_PUID>
+      - PGID=<your_PGID>
     volumes:
       - <entertainment_folder>/movies:/data/tvshows # change me!
       - <entertainment_folder>/tvshows:/data/movies # change me!
@@ -20,9 +20,9 @@ services:
     image: ghcr.io/linuxserver/qbittorrent
     container_name: qbittorrent
     environment:
-      - PUID: <your_PUID>
-      - PGID: <your_PGID>
-      - WEB_UI_PORT: 8080
+      - PUID=<your_PUID>
+      - PGID=<your_PGID>
+      - WEB_UI_PORT=8080
     volumes:
       - <entertainment_folder>/downloads:/downloads # change me!
     ports:
@@ -37,8 +37,8 @@ services:
     image: ghcr.io/linuxserver/sonarr:preview
     container_name: sonarr
     environment:
-      - PUID: <your_PUID>
-      - PGID: <your_PGID>
+      - PUID=<your_PUID>
+      - PGID=<your_PGID>
     volumes:
       - <entertainment_folder>/tvshows:/tv # change me!
       - <entertainment_folder>/downloads:/downloads # change me!
@@ -51,8 +51,8 @@ services:
     image: ghcr.io/linuxserver/radarr
     container_name: radarr
     environment:
-      - PUID: <your_PUID>
-      - PGID: <your_PGID>
+      - PUID=<your_PUID>
+      - PGID=<your_PGID>
     volumes:
       - <entertainment_folder>/movies:/movies # change me!
       - <entertainment_folder>/downloads:/downloads # change me!
@@ -65,8 +65,8 @@ services:
     image: ghcr.io/linuxserver/bazarr
     container_name: bazarr
     environment:
-      - PUID: <your_PUID>
-      - PGID: <your_PGID>
+      - PUID=<your_PUID>
+      - PGID=<your_PGID>
     volumes:
       - <entertainment_folder>/movies:/movies # change me!
       - <entertainment_folder>/tvshows:/tv # change me!
@@ -80,9 +80,9 @@ services:
     image: ghcr.io/linuxserver/jackett
     container_name: jackett
     environment:
-      - PUID: <your_PUID>
-      - PGID: <your_PGID>
-      - AUTO_UPDATE: "True"
+      - PUID=<your_PUID>
+      - PGID=<your_PGID>
+      - AUTO_UPDATE="True"
     volumes:
       - <entertainment_folder>/blackhole:/downloads # change me!
     ports:
