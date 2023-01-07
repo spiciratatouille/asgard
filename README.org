@@ -112,8 +112,16 @@ Just let them know YAMS sent you there 😎
 :ID:       b0a86edc-dc4f-4ac2-908c-fd08f1d2f99c
 :END:
 - [[https://info.linuxserver.io/][linuxserver.io]] for their amazing docker images
+- [[https://sonarr.tv/][Sonarr]]
+- [[https://radarr.video/][Radarr]]
+- [[https://emby.media/][Emby]]
+- [[https://www.qbittorrent.org/][qBittorrent]]
+- [[https://www.bazarr.media/][Bazarr]]
+- [[https://github.com/Jackett/Jackett][Jackett]]
 - My friends:
   + [[https://github.com/xploshioOn][xploshioOn]]
   + [[https://github.com/norlis][norlis]]
   + [[https://github.com/isaac152][isaac152]]
   For giving me ideas and helping me test the script
+- You 🫵, for being such an amazing human being, checking out my repo and (hopefully!) using it on your
+  media server. Thank you! 🙇
