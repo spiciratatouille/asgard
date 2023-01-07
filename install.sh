@@ -148,7 +148,7 @@ fi
 # Cleaning up...
 # ============================================================================================
 
-cp setup.sh $install_location
+cp install.sh $install_location
 cp yams /usr/local/bin/yams && chmod +x /usr/local/bin/yams
 
 
