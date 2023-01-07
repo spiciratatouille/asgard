@@ -85,18 +85,18 @@ else
     send_error_message "The user $username doesn't exist!"
 fi
 
-read -p "Please, input your entertainment folder: " entertainment_folder
+read -p "Please, input your media folder: " media_folder
 
 # Checking that the entertainment folder exists
 
-realpath $entertainment_folder &>/dev/null || send_error_message "There was an error with your entertainment folder! The directory \"$entertainment_folder\" does not exist!"
+realpath $media_folder &>/dev/null || send_error_message "There was an error with your media folder! The directory \"$media_folder\" does not exist!"
 
-entertainment_folder=$(realpath $entertainment_folder)
+media_folder=$(realpath $media_folder)
 
-read -p "Are you sure your entertainment folder is $entertainment_folder? [y/N]: " entertainment_folder_correct
-entertainment_folder_correct=${entertainment_folder_correct:-"n"}
+read -p "Are you sure your media folder is $media_folder? [y/N]: " media_folder_correct
+media_folder_correct=${media_folder_correct:-"n"}
 
-if [ $entertainment_folder_correct == "n" ]; then
+if [ $media_folder_correct == "n" ]; then
     send_error_message "Entertainment folder is not correct. Please, fix it and run the script again"
 fi
 
@@ -119,8 +119,8 @@ sed -i -e "s/<your_PUID>/$puid/g" $filename
 # Set PGID
 sed -i -e "s/<your_PGID>/$pgid/g" $filename
 
-# Set entertainment_folder
-sed -i -e "s;<entertainment_folder>;$entertainment_folder;g" $filename
+# Set media_folder
+sed -i -e "s;<media_folder>;$media_folder;g" $filename
 
 # Set yams script
 sed -i -e "s;<filename>;$filename;g" yams
