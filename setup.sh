@@ -38,8 +38,7 @@ check_dependencides() {
     if command -v $1 &> /dev/null; then
         send_success_message "$1 exists ✅ "
     else
-        send_error_message "⚠ You need to have $1 installed and in your PATH! EXITING ⚠"
-        exit 255
+        send_error_message "⚠️ You need to have \"$1\" installed and in your PATH! EXITING ⚠️"
     fi
 }
 
