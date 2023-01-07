@@ -92,8 +92,9 @@ destroy    destroy yams services so you can start from scratch
 :PROPERTIES:
 :ID:       992fb05d-c171-4ba9-9207-3dd1d467656e
 :END:
-If you *really* want to donate, I would prefer you donate to each individual project. They are the ones
-doing the real work, I just created a docker-compose file and a couple of bash scripts:
+If you *really* wish to donate, first I would like to say thank you from the bottom of my heart! Second, I
+would prefer you donate to any of the projects used in this script. They are the ones doing the real
+work, I just created a docker-compose file and a couple of bash scripts:
 
 - [[https://www.linuxserver.io/donate][linuxserver.io donations page]]
 - [[https://sonarr.tv/donate][Sonarr donations page]]
@@ -102,6 +103,8 @@ doing the real work, I just created a docker-compose file and a couple of bash s
 - [[https://www.qbittorrent.org/donate][qBittorrent donations page]]
 - [[https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=XHHRWXT9YB7WE&source=url][Bazarr donations page]]
 - Jackett does not have a donation page 🤔
+
+Just let them know YAMS sent you there 😎
 
 * Special thanks
 :PROPERTIES:
