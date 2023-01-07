@@ -148,9 +148,7 @@ fi
 # Cleaning up...
 # ============================================================================================
 
-cp install.sh $install_location
 cp yams /usr/local/bin/yams && chmod +x /usr/local/bin/yams
-
 
 printf "\033c"
 
