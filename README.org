@@ -87,3 +87,14 @@ stop       stops all yams services
 start      starts yams services
 destroy    destroy yams services so you can start from scratch
 #+end_src
+
+* Special thanks
+:PROPERTIES:
+:ID:       b0a86edc-dc4f-4ac2-908c-fd08f1d2f99c
+:END:
+- [[https://info.linuxserver.io/][linuxserver.io]] for their amazing docker images
+- My friends:
+  + [[https://github.com/xploshioOn][xploshioOn]]
+  + [[https://github.com/norlis][norlis]]
+  + [[https://github.com/isaac152][isaac152]]
+For giving me ideas and helping me test the script
