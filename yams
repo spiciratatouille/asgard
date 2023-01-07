@@ -11,9 +11,10 @@ help() {
    echo "Usage: yams [--help|restart|stop|start|status]"
    echo "options:"
    echo "--help     displays this help message"
-   echo "restart    restarts yams"
-   echo "stop       stops yams"
-   echo "start      starts yams"
+   echo "restart    restarts yams services"
+   echo "stop       stops all yams services"
+   echo "start      starts yams services"
+   echo "destroy    destroy yams services so you can start from scratch"
 }
 
 if [ $option == "--help" ]; then
@@ -34,4 +35,18 @@ fi
 if [ $option == "start" ]; then
     $dc up -d
     exit 0
+fi
+
+if [ $option == "destroy" ]; then
+    echo
+    echo
+    read -p "Are you sure you want to destroy all your yams services? THIS IS NOT RECOVERABLE! ⚠️ ️🚨 [y/N]: " destroy_now
+    destroy_now=${destroy_now:-"n"}
+    if [ $destroy_now == "y" ]; then
+        $dc down
+        echo
+        echo
+        echo "yams services were destroyed. To restart, run: "
+        echo "\$ yams start"
+    fi
 fi
