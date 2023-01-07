@@ -66,7 +66,7 @@ check_dependencides "docker-compose"
 # ============================================================================================
 # Gathering information
 # ============================================================================================
-read -p "Where do you want to instal the docker-compose file? [/opt/yams] : " install_location
+read -p "Where do you want to install the docker-compose file? [/opt/yams]: " install_location
 
 # Checking if the install_location exists
 install_location=${install_location:-/opt/yams}
@@ -74,7 +74,7 @@ install_location=${install_location:-/opt/yams}
 install_location=$(realpath $install_location)
 filename="$install_location/docker-compose.yaml"
 
-read -p "What's the user that is going to own the media server files? [$USER] : " username
+read -p "What's the user that is going to own the media server files? [$USER]: " username
 
 # Checking that the user exists
 username=${username:-$USER}
@@ -88,7 +88,7 @@ fi
 
 read -p "Please, input your media folder: " media_folder
 
-# Checking that the entertainment folder exists
+# Checking that the media folder exists
 
 realpath $media_folder &>/dev/null || send_error_message "There was an error with your media folder! The directory \"$media_folder\" does not exist!"
 
@@ -98,7 +98,7 @@ read -p "Are you sure your media folder is $media_folder? [y/N]: " media_folder_
 media_folder_correct=${media_folder_correct:-"n"}
 
 if [ $media_folder_correct == "n" ]; then
-    send_error_message "Entertainment folder is not correct. Please, fix it and run the script again"
+    send_error_message "Media folder is not correct. Please, fix it and run the script again"
 fi
 
 echo "Configuring the docker-compose file for the user \"$username\" on \"$install_location\"..."
