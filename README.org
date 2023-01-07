@@ -22,12 +22,12 @@ categorize, subtitle and serve your favorite shows and movies.
 :ID:       0e072c32-3158-4961-869c-49920090f3d5
 :END:
 In no particular order:
-- **Automatic shows/movies download**: Just add your shows and movies to the watch list and it should
+- *Automatic shows/movies download*: Just add your shows and movies to the watch list and it should
   automatically download the files when they are available.
-- **Automatic clasification and organization**: Your media files should be completely organized by default.
-- **Automatic subtitles download**: Self explanatory. Your media server should automatically download
+- *Automatic clasification and organization*: Your media files should be completely organized by default.
+- *Automatic subtitles download*: Self explanatory. Your media server should automatically download
   subtitles in the languages you choose, if they are available.
-- *Support for Web, Android, iOS, Android TV and whatever that can support Emby**: Since we are
+- *Support for Web, Android, iOS, Android TV and whatever that can support Emby*: Since we are
   leveraging from Emby, you should be able to watch your favorite media almost anywhere.
 
 * Dependencies
@@ -43,13 +43,13 @@ First, you need to install:
 :ID:       1c609bfc-4e6e-4fd8-8129-1b722fd7cda8
 :END:
 Before installing, make sure you have:
-- **A media folder**: This is the folder where all your files are going to be downloaded and categorized. If
+- *A media folder*: This is the folder where all your files are going to be downloaded and categorized. If
   you choose ~/srv/media~, the script is going to create the following folders:
   + ~/srv/media/tv~: For your TV shows
   + ~/srv/media/movies~: For your movies
   + ~/srv/media/downloads~: For your torrent downloads
   + ~/srv/media/blackhole~: For your torrents blackhole
-- **A regular user to run and own the media files**: You shouldn't use ~root~ for this user, but I'm not
+- *A regular user to run and own the media files*: You shouldn't use ~root~ for this user, but I'm not
   your father, nothing is going to stop you lol
 
 * To run
