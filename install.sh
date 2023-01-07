@@ -49,6 +49,7 @@ running_services_location() {
     echo "Bazarr: http://$host_ip:6767/"
     echo "Jackett: http://$host_ip:9117/"
     echo "Emby: http://$host_ip:8096/"
+    echo "qBittorrent: http://$host_ip:8080/"
 }
 
 # ============================================================================================

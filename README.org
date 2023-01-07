@@ -1,3 +1,41 @@
 #+title: YAMS: Yet Another Media Server
 
-This is my mediaserver script. A better README comming soon.
+This is my mediaserver script.
+
+* Description
+:PROPERTIES:
+:ID:       280135a0-2cff-4e93-8679-7d1a6d56b7b2
+:END:
+This script installs the following software:
+- [[https://sonarr.tv/][Sonarr]]
+- [[https://radarr.video/][Radarr]]
+- [[https://emby.media/][Emby]]
+- [[https://www.qbittorrent.org/][qBittorrent]]
+- [[https://www.bazarr.media/][Bazarr]]
+- [[https://github.com/Jackett/Jackett][Jackett]]
+
+  Whit this combination, you can create a fully functional media server that is going to download,
+  categorize, subtitle and serve your favorite shows and movies.
+
+* Requirements
+:PROPERTIES:
+:ID:       01577a0a-852e-481a-b9b3-791b68594f96
+:END:
+First, you need to install:
+- docker
+- docker-compose
+
+* To run
+:PROPERTIES:
+:ID:       a0417c61-3fd8-40a0-9385-6c5aaed37337
+:END:
+
+#+begin_src bash
+$ git clone https://gitlab.com/rogs/yams.git
+$ cd yams
+$ ./install.sh
+#+end_src
+
+And follow the instructions.
+
+So far, I've tested this in Debian 11, but it should work on Ubuntu as well.
