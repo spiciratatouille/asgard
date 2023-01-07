@@ -58,26 +58,48 @@ check_dependencides "docker-compose"
 # ============================================================================================
 read -p "Where do you want to instal the docker-compose file? [/opt/yams] : " install_location
 
+# Checking if the install_location exists
+install_location=${install_location:-/opt/yams}
+[[ -f $install_location ]] || mkdir -p $install_location || send_error_message "There was an error with your install location! (Maybe you forgot to run with sudo?)"
+install_location=$(realpath $install_location)
+filename="$install_location/docker-compose.yaml"
+
 read -p "What's the user that is going to own the media server files? [$USER] : " username
 
-read -p "Please, input your entertainment folder: " ENTERTAINMENT_FOLDER
-
-install_location=${install_location:-/opt/yams}
-filename="$install_location/docker-compose.yaml"
+# Checking that the user exists
 username=${username:-$USER}
-puid=$(id -u $username)
-pgid=$(id -g $username)
 
-echo "Configuring the docker for the user $username on \"$install_location\"..."
+if id -u $username &>/dev/null; then
+    puid=$(id -u $username);
+    pgid=$(id -g $username);
+else
+    send_error_message "The user $username doesn't exist!"
+fi
+
+read -p "Please, input your entertainment folder: " entertainment_folder
+
+# Checking that the entertainment folder exists
+
+realpath $entertainment_folder &>/dev/null || send_error_message "There was an error with your entertainment folder! The directory \"$entertainment_folder\" does not exist!"
+
+entertainment_folder=$(realpath $entertainment_folder)
+
+read -p "Are you sure your entertainment folder is $entertainment_folder? [y/N]: " entertainment_folder_correct
+entertainment_folder_correct=${entertainment_folder_correct:-"n"}
+
+if [ $entertainment_folder_correct == "n" ]; then
+    send_error_message "Entertainment folder is not correct. Please, fix it and run the script again"
+fi
+
+echo "Configuring the docker-compose file for the user \"$username\" on \"$install_location\"..."
 # ============================================================================================
 
 # ============================================================================================
 # Actually installing everything!
 # ============================================================================================
-# Checking if the install_location exists
-[[ -f $install_location ]] || mkdir -p $install_location || send_error_message "You need to have permissions on the folder! (Maybe you forgot to run with sudo?)"
 
 # Copy the docker-compose file from the example to the real one
+echo ""
 echo "Copying $filename..."
 
 cp docker-compose.example.yaml $filename || send_error_message "You need to have permissions on the folder! (Maybe you forgot to run with sudo?)"
@@ -89,7 +111,7 @@ sed -i '' -e "s/<your_PUID>/$puid/g" $filename
 sed -i '' -e "s/<your_PGID>/$pgid/g" $filename
 
 # Set entertainment_folder
-sed -i '' -e "s;<entertainment_folder>;$ENTERTAINMENT_FOLDER;g" $filename
+sed -i '' -e "s;<entertainment_folder>;$entertainment_folder;g" $filename
 
 send_success_message "Everything installed correctly! 🎉"
 read -p "Do you want to run the script now? [Y/n]: " run_now
