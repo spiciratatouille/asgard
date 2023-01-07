@@ -1,6 +1,7 @@
-#!/usr/bin/env sh
+#!/bin/bash
 set -eu
 
+printf "\033c"
 echo "===================================================="
 echo "                 ___           ___           ___    "
 echo "     ___        /  /\         /__/\         /  /\   "
@@ -21,18 +22,32 @@ echo "===================================================="
 echo ""
 
 # ============================================================================================
+# Functions to ease development
+# ============================================================================================
+
+send_success_message() {
+    echo -e $(printf "\e[32m$1\e[0m")
+}
+
+send_error_message() {
+    echo -e $(printf "\e[31m$1\e[0m")
+    exit 255
+}
+
+check_dependencides() {
+    if command -v $1 &> /dev/null; then
+        send_success_message "$1 exists ✅ "
+    else
+        send_error_message "⚠ You need to have $1 installed and in your PATH! EXITING ⚠"
+        exit 255
+    fi
+}
+
+# ============================================================================================
 # Check all the prerequisites are installed before continuing
 # ============================================================================================
 echo "Checking prerequisites..."
 
-check_dependencides() {
-    if command -v $1 &> /dev/null; then
-        echo "$1 exists ✅ "
-    else
-        echo "⚠ You need to have $1 installed and in your PATH! EXITING ⚠"
-        exit 255
-    fi
-}
 
 check_dependencides "docker"
 check_dependencides "docker-compose"
@@ -61,12 +76,12 @@ echo "Configuring the docker for the user $username on \"$install_location\"..."
 # Actually installing everything!
 # ============================================================================================
 # Checking if the install_location exists
-[[ -f $install_location ]] || mkdir -p $install_location || (echo "You need to have permissions on the folder! (Maybe you forgot to run with sudo?)"; false)
+[[ -f $install_location ]] || mkdir -p $install_location || send_error_message "You need to have permissions on the folder! (Maybe you forgot to run with sudo?)"
 
 # Copy the docker-compose file from the example to the real one
 echo "Copying $filename..."
 
-cp docker-compose.example.yaml $filename || (echo "You need to have permissions on the folder! (Maybe you forgot to run with sudo?)"; false)
+cp docker-compose.example.yaml $filename || send_error_message "You need to have permissions on the folder! (Maybe you forgot to run with sudo?)"
 
 # Set PUID
 sed -i '' -e "s/<your_PUID>/$puid/g" $filename
@@ -77,6 +92,7 @@ sed -i '' -e "s/<your_PGID>/$pgid/g" $filename
 # Set entertainment_folder
 sed -i '' -e "s;<entertainment_folder>;$ENTERTAINMENT_FOLDER;g" $filename
 
+send_success_message "Everything installed correctly! 🎉"
 read -p "Do you want to run the script now? [Y/n]: " run_now
 run_now=${run_now:-"y"}
 
@@ -98,8 +114,9 @@ fi
 # Cleaning up...
 # ============================================================================================
 
-mv /tmp/yams/setup.sh $install_location || true
-mv /tmp/yams/docker-compose.example.yaml $install_location || true
+printf "\033c"
+mv /tmp/yams/setup.sh $install_location &>/dev/null || true
+mv /tmp/yams/docker-compose.example.yaml $install_location &>/dev/null || true
 
 echo "========================================================"
 echo "     _____          ___           ___           ___     "
@@ -114,7 +131,8 @@ echo "    \  \::/      \  \:\/:/     \  \:\        \  \:\/:/  "
 echo "     \__\/        \  \::/       \  \:\        \  \::/   "
 echo "                   \__\/         \__\/         \__\/    "
 echo "========================================================"
-echo "All done!✅  Enjoy YAMS!"
+send_success_message "All done!✅  Enjoy YAMS!"
+echo "You can check the installation on $install_location"
 echo "========================================================"
 exit 0
 # ============================================================================================
