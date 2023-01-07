@@ -92,9 +92,10 @@ destroy    destroy yams services so you can start from scratch
 :PROPERTIES:
 :ID:       992fb05d-c171-4ba9-9207-3dd1d467656e
 :END:
-If you *really* wish to donate, first I would like to say thank you from the bottom of my heart! Second, I
-would prefer you donate to any of the projects used in this script. They are the ones doing the real
-work, I just created a docker-compose file and a couple of bash scripts:
+If you *really* wish to donate, first I would like to say thank you from the bottom of my heart! ❤️ Second, I
+would prefer you donate to any of the projects used in this script.
+
+They are the ones doing the real work, I just created a docker-compose file and a couple of bash scripts:
 
 - [[https://www.linuxserver.io/donate][linuxserver.io donations page]]
 - [[https://sonarr.tv/donate][Sonarr donations page]]
