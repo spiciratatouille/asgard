@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-set -e
+set -eu
 
 echo "===================================================="
 echo "                 ___           ___           ___    "
@@ -25,19 +25,18 @@ echo ""
 # ============================================================================================
 echo "Checking prerequisites..."
 
-if command -v docker &> /dev/null; then
-    echo "Docker exists ✅ "
-else
-    echo "⚠ You need to have docker installed and in your PATH! EXITING ⚠"
-    exit 255
-fi
+check_dependencides() {
+    if command -v $1 &> /dev/null; then
+        echo "$1 exists ✅ "
+    else
+        echo "⚠ You need to have $1 installed and in your PATH! EXITING ⚠"
+        exit 255
+    fi
+}
 
-if command -v docker-compose &> /dev/null; then
-    echo "docker-compose exists ✅ "
-else
-    echo "⚠ You need to have docker-compose installed and in your PATH! EXITING ⚠"
-    exit 255
-fi
+check_dependencides "docker"
+check_dependencides "docker-compose"
+
 # ============================================================================================
 
 # ============================================================================================
