@@ -69,19 +69,20 @@ echo "Copying $filename..."
 cp docker-compose.example.yaml $filename || (echo "You need to have permissions on the folder! (Maybe you forgot to run with sudo?)"; false)
 
 # Set PUID
-sed -i -e "s/<your_PUID>/$puid/g" $filename
+sed -i '' -e "s/<your_PUID>/$puid/g" $filename
 
 # Set PGID
-sed -i -e "s/<your_PGID>/$pgid/g" $filename
+sed -i '' -e "s/<your_PGID>/$pgid/g" $filename
 
 # Set entertainment_folder
-sed -i -e "s;<entertainment_folder>;$ENTERTAINMENT_FOLDER;g" $filename
+sed -i '' -e "s;<entertainment_folder>;$ENTERTAINMENT_FOLDER;g" $filename
 
 read -p "Do you want to run the script now? [Y/n]: " run_now
 run_now=${run_now:-"y"}
 
 if [ $run_now == "y" ]; then
     echo "Running the server..."
+    echo "This is going to take a while..."
     docker-compose -f $filename up -d
 else
     echo "Perfect! You can run the server later using the following command:"
