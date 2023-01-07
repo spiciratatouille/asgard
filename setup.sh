@@ -42,6 +42,15 @@ check_dependencides() {
     fi
 }
 
+running_services_location() {
+    host_ip=$(hostname -I | awk '{ print $1 }')
+    echo "Sonarr: http://$host_ip:8989/"
+    echo "Radarr: http://$host_ip:7878/"
+    echo "Bazarr: http://$host_ip:6767/"
+    echo "Jackett: http://$host_ip:9117/"
+    echo "Emby: http://$host_ip:8096/"
+}
+
 # ============================================================================================
 # Check all the prerequisites are installed before continuing
 # ============================================================================================
@@ -161,14 +170,11 @@ send_success_message "All done!✅  Enjoy YAMS!"
 echo "You can check the installation on $install_location"
 if [ $run_now == "y" ]; then
     echo "========================================================"
-    host_ip=$(hostname -I | awk '{ print $1 }')
     echo "Everythins should be running now! To check everything running, go to:"
-    echo "Sonarr: http://$host_ip:8989/"
-    echo "Radarr: http://$host_ip:7878/"
-    echo "Bazarr: http://$host_ip:6767/"
-    echo "Jackett: http://$host_ip:9117/"
-    echo "Emby: http://$host_ip:8096/"
+    running_services_location
     echo "You might need to wait for a couple of minutes while everything gets up and running"
+    echo "All the services location are also saved in ~/yams_services.txt"
+    running_services_location > ~/yams_services.txt
 else
     echo "========================================================"
     echo "Since YAMS is not running yet, to run it just execute:"
