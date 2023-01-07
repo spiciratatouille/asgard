@@ -154,7 +154,16 @@ echo "                   \__\/         \__\/         \__\/    "
 echo "========================================================"
 send_success_message "All done!✅  Enjoy YAMS!"
 echo "You can check the installation on $install_location"
-if [ ! $run_now == "y" ]; then
+if [ $run_now == "y" ]; then
+    echo "========================================================"
+    host_ip=$(hostname -I | awk '{ print $1 }')
+    echo "Everythins should be running now! To check everything running, go to:"
+    echo "Sonarr: $host_ip:8989/"
+    echo "Radarr: $host_ip:7878/"
+    echo "Bazarr: $host_ip:6767/"
+    echo "Jackett: $host_ip:9117/"
+    echo "Emby: $host_ip:8096/"
+else
     echo "========================================================"
     echo "Since YAMS is not running yet, to run it just execute:"
     echo "docker-compose -f $filename up -d"
