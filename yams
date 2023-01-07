@@ -1,14 +1,37 @@
 #!/bin/bash
 set -eu
 
-if [ $1 == "restart" ]; then
-    docker-compose -f <filename> stop && docker-compose up -d
+dc="docker-compose -f <filename>"
+
+option=${1:-"--help"}
+
+help() {
+   echo "yams - Yet Another Media Server"
+   echo
+   echo "Usage: yams [--help|restart|stop|start|status]"
+   echo "options:"
+   echo "--help     displays this help message"
+   echo "restart    restarts yams"
+   echo "stop       stops yams"
+   echo "start      starts yams"
+}
+
+if [ $option == "--help" ]; then
+    help
+    exit 0
 fi
 
-if [ $1 == "stop" ]; then
-    docker-compose -f <filename> stop
+if [ $option == "restart" ]; then
+    $dc stop && $dc up -d
+    exit 0
 fi
 
-if [ $1 == "start" ]; then
-    docker-compose -f <filename> up -d
+if [ $option == "stop" ]; then
+    $dc stop
+    exit 0
+fi
+
+if [ $option == "start" ]; then
+    $dc up -d
+    exit 0
 fi

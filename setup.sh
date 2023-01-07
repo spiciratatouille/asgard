@@ -114,7 +114,7 @@ sed -i -e "s/<your_PGID>/$pgid/g" $filename
 sed -i -e "s;<entertainment_folder>;$entertainment_folder;g" $filename
 
 # Set yams script
-sed -i -e "s/<filename>/$filename" yams.sh
+sed -i -e "s;<filename>;$filename;g" yams
 
 send_success_message "Everything installed correctly! 🎉"
 read -p "Do you want to run the script now? [Y/n]: " run_now
@@ -123,7 +123,7 @@ run_now=${run_now:-"y"}
 if [ $run_now == "y" ]; then
     echo "Running the server..."
     echo "This is going to take a while..."
-    ./run.sh $filename
+    docker-compose -f $filename up -d
 else
     echo "Perfect! You can run the server later using the following command:"
     echo ""
