@@ -38,7 +38,15 @@ check_dependencides() {
     if command -v $1 &> /dev/null; then
         send_success_message "$1 exists ✅ "
     else
-        send_error_message "⚠️  You need to have \"$1\" installed and in your PATH! EXITING ⚠️"
+        echo -e $(printf "\e[31m "⚠️  You need to have \"$1\" installed and in your PATH! ⚠️"\e[0m")
+        read -p "Do you want YAMS to install docker and docker-compose? IT ONLY WORKS ON DEBIAN AND UBUNTU! [y/N]: " install_docker
+        install_docker=${install_docker:-"n"}
+
+        if [ $install_docker == "y" ]; then
+            bash ./docker.sh
+        else
+            send_error_message "Install docker and docker-compose and come back later!"
+        fi
     fi
 }
 
