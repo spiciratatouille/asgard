@@ -105,7 +105,7 @@ realpath $media_folder &>/dev/null || send_error_message "There was an error wit
 
 media_folder=$(realpath $media_folder)
 
-read -p "Are you sure your media folder is $media_folder? [y/N]: " media_folder_correct
+read -p "Are you sure your media folder is $media_folder? Maye sure your user has permissions on this folder! [y/N]: " media_folder_correct
 media_folder_correct=${media_folder_correct:-"n"}
 
 if [ $media_folder_correct == "n" ]; then
@@ -159,7 +159,8 @@ fi
 # Cleaning up...
 # ============================================================================================
 
-cp yams /usr/local/bin/yams && chmod +x /usr/local/bin/yams
+echo "We need your sudo password to install the yams CLI"
+sudo cp yams /usr/local/bin/yams && sudo chmod +x /usr/local/bin/yams
 
 printf "\033c"
 
