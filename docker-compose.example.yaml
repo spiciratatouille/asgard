@@ -24,7 +24,7 @@ services:
       - PGID=<your_PGID>
       - WEB_UI_PORT=8080
     volumes:
-      - <media_folder>/downloads:/downloads # change me!
+      - <media_folder>/downloads:/downloads
     ports:
       - 6881:6881
       - 6881:6881/udp
@@ -39,8 +39,8 @@ services:
       - PUID=<your_PUID>
       - PGID=<your_PGID>
     volumes:
-      - <media_folder>/tvshows:/tv # change me!
-      - <media_folder>/downloads:/downloads # change me!
+      - <media_folder>/tvshows:/tv
+      - <media_folder>/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -53,8 +53,8 @@ services:
       - PUID=<your_PUID>
       - PGID=<your_PGID>
     volumes:
-      - <media_folder>/movies:/movies # change me!
-      - <media_folder>/downloads:/downloads # change me!
+      - <media_folder>/movies:/movies
+      - <media_folder>/downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -67,8 +67,8 @@ services:
       - PUID=<your_PUID>
       - PGID=<your_PGID>
     volumes:
-      - <media_folder>/movies:/movies # change me!
-      - <media_folder>/tvshows:/tv # change me!
+      - <media_folder>/movies:/movies
+      - <media_folder>/tvshows:/tv
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -83,7 +83,7 @@ services:
       - PGID=<your_PGID>
       - AUTO_UPDATE="True"
     volumes:
-      - <media_folder>/blackhole:/downloads # change me!
+      - <media_folder>/blackhole:/downloads
     ports:
       - 9117:9117
     restart: unless-stopped
