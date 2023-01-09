@@ -159,8 +159,9 @@ fi
 # Cleaning up...
 # ============================================================================================
 
-echo "We need your sudo password to install the yams CLI"
+send_success_message "We need your sudo password to install the yams CLI and correct permissions..."
 sudo cp yams /usr/local/bin/yams && sudo chmod +x /usr/local/bin/yams
+sudo chown -R $puid:$pgid $media_folder
 
 printf "\033c"
 
