@@ -9,8 +9,8 @@ services:
       - PUID=<your_PUID>
       - PGID=<your_PGID>
     volumes:
-      - <media_folder>/movies:/data/tvshows # change me!
-      - <media_folder>/tvshows:/data/movies # change me!
+      - <media_folder>/movies:/data/movies
+      - <media_folder>/tvshows:/data/tvshows
     ports:
       - 8096:8096
     restart: unless-stopped
