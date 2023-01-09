@@ -11,6 +11,7 @@ services:
     volumes:
       - <media_folder>/movies:/data/movies
       - <media_folder>/tvshows:/data/tvshows
+      - <install_location>/config/emby:/config
     ports:
       - 8096:8096
     restart: unless-stopped
@@ -25,6 +26,7 @@ services:
       - WEB_UI_PORT=8080
     volumes:
       - <media_folder>/downloads:/downloads
+      - <install_location>/config/qbittorrent:/config
     ports:
       - 6881:6881
       - 6881:6881/udp
@@ -41,6 +43,7 @@ services:
     volumes:
       - <media_folder>/tvshows:/tv
       - <media_folder>/downloads:/downloads
+      - <install_location>/config/sonarr:/config
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -55,6 +58,7 @@ services:
     volumes:
       - <media_folder>/movies:/movies
       - <media_folder>/downloads:/downloads
+      - <install_location>/config/radarr:/config
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -69,6 +73,7 @@ services:
     volumes:
       - <media_folder>/movies:/movies
       - <media_folder>/tvshows:/tv
+      - <install_location>/config/bazarr:/config
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -84,6 +89,7 @@ services:
       - AUTO_UPDATE="True"
     volumes:
       - <media_folder>/blackhole:/downloads
+      - <install_location>/config/jackett:/config
     ports:
       - 9117:9117
     restart: unless-stopped

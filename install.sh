@@ -134,8 +134,12 @@ sed -i -e "s/<your_PGID>/$pgid/g" $filename
 # Set media_folder
 sed -i -e "s;<media_folder>;$media_folder;g" $filename
 
+# Set config folder
+sed -i -e "s;<install_location>;$install_location;g" $filename
+
 # Set yams script
 sed -i -e "s;<filename>;$filename;g" yams
+
 
 send_success_message "Everything installed correctly! 🎉"
 read -p "Do you want to run the script now? [Y/n]: " run_now
@@ -162,6 +166,7 @@ fi
 send_success_message "We need your sudo password to install the yams CLI and correct permissions..."
 sudo cp yams /usr/local/bin/yams && sudo chmod +x /usr/local/bin/yams
 sudo chown -R $puid:$pgid $media_folder
+sudo chown -R $puid:$pgid $install_location/config
 
 printf "\033c"
 
