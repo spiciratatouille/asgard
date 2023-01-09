@@ -94,7 +94,7 @@ if id -u $username &>/dev/null; then
     puid=$(id -u $username);
     pgid=$(id -g $username);
 else
-    send_error_message "The user $username doesn't exist!"
+    send_error_message "The user \"$username\" doesn't exist!"
 fi
 
 read -p "Please, input your media folder: " media_folder
