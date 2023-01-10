@@ -105,7 +105,7 @@ realpath $media_folder &>/dev/null || send_error_message "There was an error wit
 
 media_folder=$(realpath $media_folder)
 
-read -p "Are you sure your media folder is $media_folder? Maye sure your user has permissions on this folder! [y/N]: " media_folder_correct
+read -p "Are you sure your media folder is $media_folder? [y/N]: " media_folder_correct
 media_folder_correct=${media_folder_correct:-"n"}
 
 if [ $media_folder_correct == "n" ]; then
@@ -180,8 +180,12 @@ send_success_message "All done!✅  Enjoy YAMS!"
 echo "You can check the installation on $install_location"
 echo "========================================================"
 echo "Everythins should be running now! To check everything running, go to:"
+echo
 running_services_location
+echo
+echo
 echo "You might need to wait for a couple of minutes while everything gets up and running"
+echo
 echo "All the services location are also saved in ~/yams_services.txt"
 running_services_location > ~/yams_services.txt
 echo "========================================================"
