@@ -143,21 +143,11 @@ sed -i -e "s;<install_location>;$install_location;g" yams
 
 
 send_success_message "Everything installed correctly! 🎉"
-read -p "Do you want to run the script now? [Y/n]: " run_now
-run_now=${run_now:-"y"}
 
-if [ $run_now == "y" ]; then
-    echo "Running the server..."
-    echo "This is going to take a while..."
-    docker-compose -f $filename up -d
-else
-    echo "Perfect! You can run the server later using the following command:"
-    echo ""
-    echo "========================================================"
-    echo "docker-compose -f $filename up -d"
-    echo "========================================================"
-    echo ""
-fi
+echo "Running the server..."
+echo "This is going to take a while..."
+
+docker-compose -f $filename up -d
 # ============================================================================================
 
 # ============================================================================================
@@ -166,8 +156,10 @@ fi
 
 send_success_message "We need your sudo password to install the yams CLI and correct permissions..."
 sudo cp yams /usr/local/bin/yams && sudo chmod +x /usr/local/bin/yams
+[[ -f $media_folder ]] || sudo mkdir -p $media_folder || send_error_message "There was an error with your install location!"
 sudo chown -R $puid:$pgid $media_folder
-sudo chown -R $puid:$pgid $install_location/config
+[[ -f $install_location/config ]] || sudo mkdir -p $install_location/config
+sudo chown -R $puid:$pgid $install_location
 
 printf "\033c"
 
@@ -186,18 +178,12 @@ echo "                   \__\/         \__\/         \__\/    "
 echo "========================================================"
 send_success_message "All done!✅  Enjoy YAMS!"
 echo "You can check the installation on $install_location"
-if [ $run_now == "y" ]; then
-    echo "========================================================"
-    echo "Everythins should be running now! To check everything running, go to:"
-    running_services_location
-    echo "You might need to wait for a couple of minutes while everything gets up and running"
-    echo "All the services location are also saved in ~/yams_services.txt"
-    running_services_location > ~/yams_services.txt
-else
-    echo "========================================================"
-    echo "Since YAMS is not running yet, to run it just execute:"
-    echo "docker-compose -f $filename up -d"
-fi
+echo "========================================================"
+echo "Everythins should be running now! To check everything running, go to:"
+running_services_location
+echo "You might need to wait for a couple of minutes while everything gets up and running"
+echo "All the services location are also saved in ~/yams_services.txt"
+running_services_location > ~/yams_services.txt
 echo "========================================================"
 exit 0
 # ============================================================================================
