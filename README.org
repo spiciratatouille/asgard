@@ -2,7 +2,7 @@
 
 This is a highly opinionated media server.
 
-Website: https://yams.media/
+Website: [[https://yams.media][https://yams.media]]
 
 * Description
 :PROPERTIES:
@@ -97,7 +97,7 @@ destroy    destroy yams services so you can start from scratch
 :ID:       242b8dfa-82ab-4d86-b3ea-0a0af6cf3ad5
 :END:
 
-Go to https://yams.media/config/ and follow the config instructions
+Go to [[https://yams.media/config/][https://yams.media/config/]] and follow the config instructions
 
 * Donations
 :PROPERTIES:
