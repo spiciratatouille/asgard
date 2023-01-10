@@ -51,7 +51,3 @@ if [ $option == "destroy" ]; then
         echo "\$ yams start"
     fi
 fi
-
-if [ $option == "create-backup" ]; then
-    tar -czf "$install_location/backups/yams-backup-$(date '+\%Y-\%m-\%d-\%s').tar.gz" $install_location/config/*
-fi
