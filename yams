@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu
+set -eo pipefail
 
 dc="docker-compose -f <filename>"
 install_location="<install_location>"
