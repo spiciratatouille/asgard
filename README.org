@@ -2,6 +2,8 @@
 
 This is a highly opinionated media server.
 
+Website: https://yams.media/
+
 * Description
 :PROPERTIES:
 :ID:       280135a0-2cff-4e93-8679-7d1a6d56b7b2
@@ -71,7 +73,7 @@ $ ./install.sh
 And follow the instructions.
 
 
-So far, I've tested this in Debian 11, but it should work on Ubuntu as well.
+So far, I've tested this in Debian 11 and Ubuntu 22.04.
 
 * Usage
 :PROPERTIES:
@@ -82,7 +84,7 @@ When the script finishes installing without issues, just run:
 $ yams
 yams - Yet Another Media Server
 
-Usage: yams [--help|restart|stop|start|status]
+Usage: yams [--help|restart|stop|start]
 options:
 --help     displays this help message
 restart    restarts yams services
@@ -90,6 +92,12 @@ stop       stops all yams services
 start      starts yams services
 destroy    destroy yams services so you can start from scratch
 #+end_src
+* How to configure?
+:PROPERTIES:
+:ID:       242b8dfa-82ab-4d86-b3ea-0a0af6cf3ad5
+:END:
+
+Go to https://yams.media/config/ and follow the config instructions
 
 * Donations
 :PROPERTIES:
