@@ -139,6 +139,7 @@ sed -i -e "s;<install_location>;$install_location;g" $filename
 
 # Set yams script
 sed -i -e "s;<filename>;$filename;g" yams
+sed -i -e "s;<install_location>;$install_location;g" yams
 
 
 send_success_message "Everything installed correctly! 🎉"
