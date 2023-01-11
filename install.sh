@@ -39,7 +39,7 @@ check_dependencides() {
         send_success_message "$1 exists ✅ "
     else
         echo -e $(printf "\e[31m ⚠️ $1 not found! ⚠️\e[0m")
-        read -p "Do you want YAMS to install docker and docker-compose? IT ONLY WORKS ON DEBIAN AND UBUNTU! [y/N]: " install_docker
+        read -pr "Do you want YAMS to install docker and docker-compose? IT ONLY WORKS ON DEBIAN AND UBUNTU! [y/N]: " install_docker
         install_docker=${install_docker:-"n"}
 
         if [ $install_docker == "y" ]; then
@@ -74,7 +74,7 @@ check_dependencides "docker-compose"
 # ============================================================================================
 # Gathering information
 # ============================================================================================
-read -p "Where do you want to install the docker-compose file? [/opt/yams]: " install_location
+read -pr "Where do you want to install the docker-compose file? [/opt/yams]: " install_location
 
 # Checking if the install_location exists
 install_location=${install_location:-/opt/yams}
@@ -82,7 +82,7 @@ install_location=${install_location:-/opt/yams}
 install_location=$(realpath $install_location)
 filename="$install_location/docker-compose.yaml"
 
-read -p "What's the user that is going to own the media server files? [$USER]: " username
+read -pr "What's the user that is going to own the media server files? [$USER]: " username
 
 # Checking that the user exists
 username=${username:-$USER}
@@ -94,7 +94,7 @@ else
     send_error_message "The user \"$username\" doesn't exist!"
 fi
 
-read -p "Please, input your media folder: " media_folder
+read -pr "Please, input your media folder: " media_folder
 
 # Checking that the media folder exists
 
@@ -102,7 +102,7 @@ realpath $media_folder &>/dev/null || send_error_message "There was an error wit
 
 media_folder=$(realpath $media_folder)
 
-read -p "Are you sure your media folder is $media_folder? [y/N]: " media_folder_correct
+read -pr "Are you sure your media folder is $media_folder? [y/N]: " media_folder_correct
 media_folder_correct=${media_folder_correct:-"n"}
 
 if [ $media_folder_correct == "n" ]; then
