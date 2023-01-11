@@ -43,9 +43,6 @@ check_dependencides() {
         install_docker=${install_docker:-"n"}
 
         if [ $install_docker == "y" ]; then
-            echo
-            echo "🤔 When docker finishes the installation, run ./install again! 🧠"
-            read -p "Press [ENTER] to continue..."
             bash ./docker.sh
         else
             send_error_message "Install docker and docker-compose and come back later!"
