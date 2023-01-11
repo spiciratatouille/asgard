@@ -186,5 +186,10 @@ echo
 echo "All the services location are also saved in ~/yams_services.txt"
 running_services_location > ~/yams_services.txt
 echo "========================================================"
+echo
+echo "To configure YAMS, check the documentation at"
+echo "https://yams.media/config"
+echo
+echo "========================================================"
 exit 0
 # ============================================================================================
