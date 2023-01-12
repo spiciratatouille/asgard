@@ -25,6 +25,7 @@ fi
 
 if [ $option == "restart" ]; then
     $dc stop && $dc up -d
+    echo "YAMS is starting. Wait 1 min until all the services are up and running..."
     exit 0
 fi
 
@@ -35,6 +36,7 @@ fi
 
 if [ $option == "start" ]; then
     $dc up -d
+    echo "YAMS is starting. Wait 1 min until all the services are up and running..."
     exit 0
 fi
 
