@@ -109,6 +109,20 @@ if [ $media_folder_correct == "n" ]; then
     send_error_message "Media folder is not correct. Please, fix it and run the script again"
 fi
 
+# Adding the VPN
+echo "Time to setup the VPN."
+echo "The automatic installer only works with Mullvad, but you can setup many other VPNs manually."
+echo "If you want to use any other VPN, choose \"N\""
+read -p "Do you want to configure Mullvad VPN? [Y/n]: " setup_vpn
+setup_vpn=${setup_vpn:-"y"}
+
+if [ $setup_vpn == "y" ]; then
+    read -p "What's your Mullvad username? (without spaces): " mullvad_user
+    echo "What country do you want to use?"
+    read -p "You can check the countries list here: https://mullvad.net/en/servers/ [brazil]: " mullvad_country
+    mullvad_country=${mullvad_country:-"brazil"}
+fi
+
 echo "Configuring the docker-compose file for the user \"$username\" on \"$install_location\"..."
 # ============================================================================================
 
@@ -133,6 +147,14 @@ sed -i -e "s;<media_folder>;$media_folder;g" $filename
 
 # Set config folder
 sed -i -e "s;<install_location>;$install_location;g" $filename
+
+# Set VPN
+if [ $setup_vpn == "y" ]; then
+    sed -i -e "s;<mullvad_user>;$mullvad_user;g" $filename
+    sed -i -e "s;<mullvad_country>;$mullvad_country;g" $filename
+    sed -i -e "s;#network_mode: \"service:gluetun\";network_mode: \"service:gluetun\";g" $filename
+    sed -i -e "s;port: 8080:8080;#port: 8080:8080;g" $filename
+fi
 
 # Set yams script
 sed -i -e "s;<filename>;$filename;g" yams

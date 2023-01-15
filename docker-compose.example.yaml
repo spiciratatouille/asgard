@@ -28,9 +28,8 @@ services:
       - <media_folder>/downloads:/downloads
       - <install_location>/config/qbittorrent:/config
     restart: unless-stopped
-    network_mode: "service:gluetun"
-    depends_on:
-      - gluetun
+    #port: 8080:8080
+    #network_mode: "service:gluetun"
 
   # Sonarr is used to query, add downloads to the download queue and index TV shows
   sonarr:
@@ -97,6 +96,7 @@ services:
   gluetun:
     image: qmcgaw/gluetun
     container_name: gluetun
+    profiles: donotstart
     cap_add:
       - NET_ADMIN
     devices:
@@ -112,3 +112,4 @@ services:
       - VPN_SERVICE_PROVIDER=mullvad
       - VPN_TYPE=openvpn
       - OPENVPN_USER=<mullvad_user>
+      - SERVER_COUNTRIES=<mullvad_country>
