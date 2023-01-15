@@ -29,7 +29,7 @@ services:
       - <install_location>/config/qbittorrent:/config
     restart: unless-stopped
     ports: #qbittorrent
-      - 8080:8080 #qbittorrent
+      - 8080:8080 # qbittorrent
     #network_mode: "service:gluetun"
 
   # Sonarr is used to query, add downloads to the download queue and index TV shows
