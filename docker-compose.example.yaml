@@ -27,11 +27,9 @@ services:
     volumes:
       - <media_folder>/downloads:/downloads
       - <install_location>/config/qbittorrent:/config
-    ports:
-      - 6881:6881
-      - 6881:6881/udp
-      - 8080:8080
     restart: unless-stopped
+    network_mode: "service:gluetun"
+    depends_on: gluetun
 
   # Sonarr is used to query, add downloads to the download queue and index TV shows
   sonarr:
@@ -93,3 +91,23 @@ services:
     ports:
       - 9117:9117
     restart: unless-stopped
+
+  # Gluetun is our VPN, so you can download torrents safely
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - 8888:8888/tcp # HTTP proxy
+      - 8388:8388/tcp # Shadowsocks
+      - 8388:8388/udp # Shadowsocks
+      - 8080:8080/tcp
+    volumes:
+      - <install_location>/config/gluetun:/config
+    environment:
+      - VPN_SERVICE_PROVIDER=mullvad
+      - VPN_TYPE=openvpn
+      - OPENVPN_USER=<mullvad_user>
