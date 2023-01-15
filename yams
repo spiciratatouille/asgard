@@ -2,7 +2,6 @@
 set -eo pipefail
 
 dc="docker-compose -f <filename>"
-install_location="<install_location>"
 
 option=${1:-"--help"}
 
@@ -16,6 +15,7 @@ help() {
    echo "stop       stops all yams services"
    echo "start      starts yams services"
    echo "destroy    destroy yams services so you can start from scratch"
+   echo "check-vpn checks if the VPN is working as expected"
 }
 
 if [ $option == "--help" ]; then
@@ -38,6 +38,24 @@ if [ $option == "start" ]; then
     $dc up -d
     echo "YAMS is starting. Wait 1 min until all the services are up and running..."
     exit 0
+fi
+
+if [ $option == "check-vpn" ]; then
+    echo "Getting your qBittorrent IP..."
+    qbittorrent_ip=$($dc exec -it qbittorrent sh -c "curl -s ifconfig.me");
+    echo "$qbittorrent_ip"
+    echo
+    echo "Getting your IP..."
+    your_ip=$(curl -s ifconfig.me)
+    echo "$your_ip"
+    echo
+    if [ $qbittorrent_ip == $your_ip ]; then
+	   echo "Your IPs are the same! qBittorrent is NOT working!"
+	   exit 255
+   else
+	   echo "Your IPs are different. qBittorrent is working as expected!"
+    	   exit 0
+   fi
 fi
 
 if [ $option == "destroy" ]; then
