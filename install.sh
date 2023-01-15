@@ -110,6 +110,9 @@ if [ $media_folder_correct == "n" ]; then
 fi
 
 # Adding the VPN
+echo
+echo
+echo
 echo "Time to setup the VPN."
 echo "The automatic installer only works with Mullvad, but you can setup many other VPNs manually."
 echo "If you want to use any other VPN, choose \"N\""
