@@ -153,7 +153,8 @@ if [ $setup_vpn == "y" ]; then
     sed -i -e "s;<mullvad_user>;$mullvad_user;g" $filename
     sed -i -e "s;<mullvad_country>;$mullvad_country;g" $filename
     sed -i -e "s;#network_mode: \"service:gluetun\";network_mode: \"service:gluetun\";g" $filename
-    sed -i -e "s;port: 8080:8080;#port: 8080:8080;g" $filename
+    sed -i -e "s;ports: #qbittorrent;#port: #qbittorrent;g" $filename
+    sed -i -e "s;- 8080:8080 # qbittorrent;#- 8080:8080 #qbittorrent;g" $filename
 fi
 
 # Set yams script
