@@ -28,7 +28,7 @@ services:
       - <media_folder>/downloads:/downloads
       - <install_location>/config/qbittorrent:/config
     restart: unless-stopped
-    ports: #qbittorrent
+    ports: # qbittorrent
       - 8080:8080 # qbittorrent
     #network_mode: "service:gluetun"
 
