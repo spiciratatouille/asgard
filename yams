@@ -18,6 +18,15 @@ help() {
    echo "check-vpn checks if the VPN is working as expected"
 }
 
+send_success_message() {
+    echo -e $(printf "\e[32m$1\e[0m")
+}
+
+send_error_message() {
+    echo -e $(printf "\e[31m$1\e[0m")
+    exit 255
+}
+
 if [ $option == "--help" ]; then
     help
     exit 0
@@ -50,11 +59,9 @@ if [ $option == "check-vpn" ]; then
     echo "$your_ip"
     echo
     if [ $qbittorrent_ip == $your_ip ]; then
-	   echo "Your IPs are the same! qBittorrent is NOT working!"
-	   exit 255
+	   send_error_message "Your IPs are the same! qBittorrent is NOT working! ⚠️"
    else
-	   echo "Your IPs are different. qBittorrent is working as expected!"
-    	   exit 0
+	   send_success_message "Your IPs are different. qBittorrent is working as expected! ✅ "
    fi
 fi
 
