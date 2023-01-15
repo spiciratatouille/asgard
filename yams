@@ -15,7 +15,7 @@ help() {
    echo "stop       stops all yams services"
    echo "start      starts yams services"
    echo "destroy    destroy yams services so you can start from scratch"
-   echo "check-vpn checks if the VPN is working as expected"
+   echo "check-vpn  checks if the VPN is working as expected"
 }
 
 send_success_message() {
