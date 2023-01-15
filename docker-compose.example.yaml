@@ -28,7 +28,7 @@ services:
       - <media_folder>/downloads:/downloads
       - <install_location>/config/qbittorrent:/config
     restart: unless-stopped
-    #port: 8080:8080
+    port: 8080:8080
     #network_mode: "service:gluetun"
 
   # Sonarr is used to query, add downloads to the download queue and index TV shows
@@ -96,7 +96,6 @@ services:
   gluetun:
     image: qmcgaw/gluetun
     container_name: gluetun
-    profiles: donotstart
     cap_add:
       - NET_ADMIN
     devices:
