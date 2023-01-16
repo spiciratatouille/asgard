@@ -123,8 +123,32 @@ if [ $setup_vpn == "y" ]; then
     read -p "What's your VPN service? (with spaces) [mullvad]: " vpn_service
     vpn_service=${vpn_service:-"mullvad"}
     read -p "What's your VPN username? (without spaces): " vpn_user
-    read -sp "What's your VPN password? (if you are using mullvad, just enter your username again): " vpn_password
+
+    unset vpn_password
+    charcount=0
+    prompt="What's your VPN password? (if you are using mullvad, just enter your username again): "
+    while IFS= read -p "$prompt" -r -s -n 1 char
+    do
+        if [[ $char == $'\0' ]]
+        then
+            break
+        fi
+        if [[ $char == $'\177' ]] ; then
+            if [ $charcount -gt 0 ] ; then
+                charcount=$((charcount-1))
+                prompt=$'\b \b'
+                vpn_password="${vpn_password%?}"
+            else
+                prompt=''
+            fi
+        else
+            charcount=$((charcount+1))
+            prompt='*'
+            vpn_password+="$char"
+        fi
+    done
     echo
+
     echo "What country do you want to use?"
     read -p "You can check the countries list for your VPN here: https://github.com/qdm12/gluetun/wiki/$vpn_service#servers [brazil]: " vpn_country
     vpn_country=${vpn_country:-"brazil"}
