@@ -1,4 +1,5 @@
 #+title: YAMS: Yet Another Media Server
+[[https://visitor-badge.laobi.icu/badge?page_id=rogs.yams]]
 
 This is a highly opinionated media server.
 
