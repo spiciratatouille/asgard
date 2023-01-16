@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+set -euo pipefail
 
 version=$(cat /etc/issue.net | awk '{print tolower($1)}')
 
