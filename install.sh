@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu
+set -euxo pipefail
 
 printf "\033c"
 echo "===================================================="
