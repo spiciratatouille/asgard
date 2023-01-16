@@ -53,10 +53,12 @@ if [ $option == "check-vpn" ]; then
     echo "Getting your qBittorrent IP..."
     qbittorrent_ip=$($dc exec -it qbittorrent sh -c "curl -s ifconfig.me");
     echo "$qbittorrent_ip"
+    echo "Your country in qBittorrent is $($dc exec -it qbittorrent sh -c 'curl -s https://am.i.mullvad.net/country')"
     echo
     echo "Getting your IP..."
     your_ip=$(curl -s ifconfig.me)
     echo "$your_ip"
+    echo "Your local IP country is $(curl -s https://am.i.mullvad.net/country)"
     echo
     if [ $qbittorrent_ip == $your_ip ]; then
 	   send_error_message "Your IPs are the same! qBittorrent is NOT working! ⚠️"
