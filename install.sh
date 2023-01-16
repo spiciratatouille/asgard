@@ -124,7 +124,7 @@ if [ $setup_vpn == "y" ]; then
     read -p "What's your VPN username? (without spaces): " vpn_user
     read -sp "What's your VPN password? (if you are using mullvad, just enter your username again): " vpn_password
     echo "What country do you want to use?"
-    read -p "You can check the countries list for your VPN here: https://github.com/qdm12/gluetun/wiki/$vpn_service [brazil]: " vpn_country
+    read -p "You can check the countries list for your VPN here: https://github.com/qdm12/gluetun/wiki/$vpn_service#servers [brazil]: " vpn_country
     vpn_country=${vpn_country:-"brazil"}
 fi
 
@@ -155,6 +155,7 @@ sed -i -e "s;<install_location>;$install_location;g" $filename
 
 # Set VPN
 if [ $setup_vpn == "y" ]; then
+    sed -i -e "s;<vpn_service>;$vpn_service;g" $filename
     sed -i -e "s;<vpn_user>;$vpn_user;g" $filename
     sed -i -e "s;<vpn_country>;$vpn_country;g" $filename
     sed -i -e "s;<vpn_password>;$vpn_password;g" $filename
