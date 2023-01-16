@@ -124,6 +124,7 @@ if [ $setup_vpn == "y" ]; then
     vpn_service=${vpn_service:-"mullvad"}
     read -p "What's your VPN username? (without spaces): " vpn_user
     read -sp "What's your VPN password? (if you are using mullvad, just enter your username again): " vpn_password
+    echo
     echo "What country do you want to use?"
     read -p "You can check the countries list for your VPN here: https://github.com/qdm12/gluetun/wiki/$vpn_service#servers [brazil]: " vpn_country
     vpn_country=${vpn_country:-"brazil"}
