@@ -59,6 +59,12 @@ Before installing, make sure you have:
   + ~/srv/media/blackhole~: For your torrents blackhole
 - *A regular user to run and own the media files*: You shouldn't use ~root~ for this user, but I'm not
   your father, nothing is going to stop you lol
+- *A VPN service (optional but STRONGLY recommended):* If you can, choose one from [[https://yams.media/advanced/vpn#official-supported-vpns][this list]]. The VPN I
+  always recommend is [[https://mullvad.net/en/][Mullvad]] because:
+  + They don’t require your email or information to create a new account.
+  + It’s simple to configure.
+  + They only have monthly subscriptions, so you can leave them whenever you want.
+  + You can pay with crypto.
 
 * To run
 :PROPERTIES:
