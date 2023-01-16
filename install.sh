@@ -122,6 +122,10 @@ setup_vpn=${setup_vpn:-"y"}
 if [ $setup_vpn == "y" ]; then
     read -p "What's your VPN service? (with spaces) [mullvad]: " vpn_service
     vpn_service=${vpn_service:-"mullvad"}
+    echo
+    echo "You should read $vpn_service's documentation in case it has different configurations for username and password."
+    echo "The documentation for $vpn_service is here: https://github.com/qdm12/gluetun/wiki/${vpn_service// /-}"
+    echo
     read -p "What's your VPN username? (without spaces): " vpn_user
 
     unset vpn_password
