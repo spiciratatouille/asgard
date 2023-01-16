@@ -114,16 +114,18 @@ echo
 echo
 echo
 echo "Time to setup the VPN."
-echo "The automatic installer only works with Mullvad, but you can setup many other VPNs manually."
-echo "If you want to use any other VPN, choose \"N\""
-read -p "Do you want to configure Mullvad VPN? [Y/n]: " setup_vpn
+echo "You can check the supported VPN list here: https://yams.media/advanced/vpn."
+read -p "Do you want to configure a VPN? [Y/n]: " setup_vpn
 setup_vpn=${setup_vpn:-"y"}
 
 if [ $setup_vpn == "y" ]; then
-    read -p "What's your Mullvad username? (without spaces): " mullvad_user
+    read -p "What's your VPN service? (with spaces) [mullvad]: " vpn_service
+    vpn_service=${vpn_service:-"mullvad"}
+    read -p "What's your VPN username? (without spaces): " vpn_user
+    read -sp "What's your VPN password? (if you are using mullvad, just enter your username again): " vpn_password
     echo "What country do you want to use?"
-    read -p "You can check the countries list here: https://mullvad.net/en/servers/ [brazil]: " mullvad_country
-    mullvad_country=${mullvad_country:-"brazil"}
+    read -p "You can check the countries list for your VPN here: https://github.com/qdm12/gluetun/wiki/$vpn_service [brazil]: " vpn_country
+    vpn_country=${vpn_country:-"brazil"}
 fi
 
 echo "Configuring the docker-compose file for the user \"$username\" on \"$install_location\"..."
@@ -153,8 +155,9 @@ sed -i -e "s;<install_location>;$install_location;g" $filename
 
 # Set VPN
 if [ $setup_vpn == "y" ]; then
-    sed -i -e "s;<mullvad_user>;$mullvad_user;g" $filename
-    sed -i -e "s;<mullvad_country>;$mullvad_country;g" $filename
+    sed -i -e "s;<vpn_user>;$vpn_user;g" $filename
+    sed -i -e "s;<vpn_country>;$vpn_country;g" $filename
+    sed -i -e "s;<vpn_password>;$vpn_password;g" $filename
     sed -i -e "s;#network_mode: \"service:gluetun\";network_mode: \"service:gluetun\";g" $filename
     sed -i -e "s;ports: # qbittorrent;#port: # qbittorrent;g" $filename
     sed -i -e "s;- 8080:8080 # qbittorrent;#- 8080:8080 # qbittorrent;g" $filename

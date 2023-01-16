@@ -109,7 +109,8 @@ services:
     volumes:
       - <install_location>/config/gluetun:/config
     environment:
-      - VPN_SERVICE_PROVIDER=mullvad
+      - VPN_SERVICE_PROVIDER=<vpn_service>
       - VPN_TYPE=openvpn
-      - OPENVPN_USER=<mullvad_user>
-      - SERVER_COUNTRIES=<mullvad_country>
+      - OPENVPN_USER=<vpn_user>
+      - OPENVPN_PASSWORD=<vpn_password>
+      - SERVER_COUNTRIES=<vpn_country>
