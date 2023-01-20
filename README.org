@@ -128,6 +128,14 @@ They are the ones doing the real work, I just created a docker-compose file and 
 
 Just let them know YAMS sent you there 😎
 
+* TODO
+:PROPERTIES:
+:ID:       eba4712e-fa8a-42c8-bc32-b593141c99a4
+:END:
+- Support for multiple media servers (Jellyfin and Plex).
+- Support for Wireguard.
+- Support for qBittorrent themes (VueTorrent).
+
 * Special thanks
 :PROPERTIES:
 :ID:       b0a86edc-dc4f-4ac2-908c-fd08f1d2f99c
