@@ -114,7 +114,7 @@ fi
 echo
 echo
 echo
-echo "Time to setup the VPN."
+echo "Time to set up the VPN."
 echo "You can check the supported VPN list here: https://yams.media/advanced/vpn."
 read -p "Do you want to configure a VPN? [Y/n]: " setup_vpn
 setup_vpn=${setup_vpn:-"y"}
