@@ -237,7 +237,7 @@ echo "========================================================"
 send_success_message "All done!✅  Enjoy YAMS!"
 echo "You can check the installation on $install_location"
 echo "========================================================"
-echo "Everythins should be running now! To check everything running, go to:"
+echo "Everything should be running now! To check everything running, go to:"
 echo
 running_services_location
 echo
