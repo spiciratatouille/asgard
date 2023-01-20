@@ -77,20 +77,18 @@ services:
       - 6767:6767
     restart: unless-stopped
 
-  # Jackett is our torrent indexer/searcher. Sonarr/Radarr use Jackett as a
+  # Prowlarr is our torrent indexer/searcher. Sonarr/Radarr use Prowlarr as a
   # source
-  jackett:
-    image: ghcr.io/linuxserver/jackett
-    container_name: jackett
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
     environment:
       - PUID=<your_PUID>
       - PGID=<your_PGID>
-      - AUTO_UPDATE="True"
     volumes:
-      - <media_folder>/blackhole:/downloads
-      - <install_location>/config/jackett:/config
+      - <install_location>/config/prowlarr:/config
     ports:
-      - 9117:9117
+      - 9696:9696
     restart: unless-stopped
 
   # Gluetun is our VPN, so you can download torrents safely

@@ -52,10 +52,10 @@ check_dependencides() {
 
 running_services_location() {
     host_ip=$(hostname -I | awk '{ print $1 }')
-    echo "Jackett: http://$host_ip:9117/"
     echo "qBittorrent: http://$host_ip:8080/"
     echo "Radarr: http://$host_ip:7878/"
     echo "Sonarr: http://$host_ip:8989/"
+    echo "Prowlarr: http://$host_ip:9696/"
     echo "Bazarr: http://$host_ip:6767/"
     echo "Emby: http://$host_ip:8096/"
 }
