@@ -128,13 +128,23 @@ They are the ones doing the real work, I just created a docker-compose file and 
 
 Just let them know YAMS sent you there 😎
 
-* For the future:
+* todo
 :PROPERTIES:
 :ID:       eba4712e-fa8a-42c8-bc32-b593141c99a4
 :END:
-- Support for multiple media servers (Jellyfin and Plex).
+(not in order)
+
+- Support for multiple media servers (Jellyfin and Plex). [Working on it ✅]
+- Readd Jackett as advanced settings.
 - Support for Wireguard.
 - Support for qBittorrent themes (VueTorrent).
+- Check [[https://filebrowser.org/][Filebrowser]].
+- Investigate [[https://github.com/FlareSolverr/FlareSolverr][FlareSolverr]].
+- Check [[https://github.com/Unpackerr/unpackerr][unpackerr]].
+- Check [[https://github.com/Flemmarr/Flemmarr][Flemarr]].
+- Add a dashboard like [[https://docs.organizr.app/installation/installing-organizr][Organizr]].
+- Add [[https://www.portainer.io/][Portainer]].
+- Check usenet.
 
 * Special thanks
 :PROPERTIES:
