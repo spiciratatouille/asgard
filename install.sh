@@ -57,7 +57,7 @@ running_services_location() {
     echo "Sonarr: http://$host_ip:8989/"
     echo "Prowlarr: http://$host_ip:9696/"
     echo "Bazarr: http://$host_ip:6767/"
-    echo "Emby: http://$host_ip:8096/"
+    echo "$media_service: http://$host_ip:$media_service_port/"
 }
 
 # ============================================================================================
@@ -108,6 +108,31 @@ media_folder_correct=${media_folder_correct:-"n"}
 
 if [ $media_folder_correct == "n" ]; then
     send_error_message "Media folder is not correct. Please, fix it and run the script again"
+fi
+
+# Setting the preferred media service
+echo
+echo
+echo
+echo "Time to choose your media service."
+echo "Your media service is the one responsible for serving your files to your network."
+echo "By default, YAMS support 3 media services:"
+echo "- jellyfin (recommended, easier)"
+echo "- emby"
+echo "- plex (advanced, always online, slower)"
+read -p "Choose your media service [jellyfin]: " media_service
+media_service=${media_service:-"jellyfin"}
+media_service=$(echo "$media_service" | sed -e 's/\(.*\)/\L\1/')
+
+media_service_port=8096
+if [ "$media_service" == "plex" ]; then
+    media_service_port=32400
+fi
+
+if echo "emby plex jellyfin" | grep -qw "$media_service"; then
+    echo "YAMS is going to install \"$media_service\" on port \"$media_service_port\""
+else
+    send_error_message "\"$media_service\" is not supported by YAMS. Are you sure you chose the correct service?"
 fi
 
 # Adding the VPN
@@ -179,6 +204,12 @@ sed -i -e "s/<your_PGID>/$pgid/g" $filename
 
 # Set media_folder
 sed -i -e "s;<media_folder>;$media_folder;g" $filename
+
+# Set media_service
+sed -i -e "s;<media_service>;$media_service;g" $filename
+if [ $media_service == "plex" ]; then
+    sed -i -e "s;#network_mode: host # plex;network_mode: host # plex;g" $filename
+fi
 
 # Set config folder
 sed -i -e "s;<install_location>;$install_location;g" $filename

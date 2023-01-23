@@ -13,7 +13,9 @@ Website: [[https://yams.media][https://yams.media]]
 This script installs the following software:
 - [[https://sonarr.tv/][Sonarr]]
 - [[https://radarr.video/][Radarr]]
+- [[https://jellyfin.org/][Jellyfin]]
 - [[https://emby.media/][Emby]]
+- [[https://www.plex.tv/][Plex]]
 - [[https://www.qbittorrent.org/][qBittorrent]]
 - [[https://www.bazarr.media/][Bazarr]]
 - [[https://github.com/Prowlarr/Prowlarr][Prowlarr]]
@@ -120,7 +122,9 @@ They are the ones doing the real work, I just created a docker-compose file and 
 - [[https://www.linuxserver.io/donate][linuxserver.io donations page]]
 - [[https://sonarr.tv/donate][Sonarr donations page]]
 - [[https://radarr.video/donate][Radarr donations page]]
+- [[https://opencollective.com/jellyfin][Jellyfin donations page]]
 - [[https://emby.media/premiere.html][Emby premier page]] (Recommended! I personally use this service)
+- [[https://www.plex.tv/plex-pass/][Plex pass page]]
 - [[https://www.qbittorrent.org/donate][qBittorrent donations page]]
 - [[https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=XHHRWXT9YB7WE&source=url][Bazarr donations page]]
 - [[https://www.paypal.me/qmcgaw][gluetun donations page]]
@@ -128,23 +132,23 @@ They are the ones doing the real work, I just created a docker-compose file and 
 
 Just let them know YAMS sent you there 😎
 
-* todo
+* todo [1/11]
 :PROPERTIES:
 :ID:       eba4712e-fa8a-42c8-bc32-b593141c99a4
 :END:
 (not in order)
 
-- Support for multiple media servers (Jellyfin and Plex). [Working on it ✅]
-- Readd Jackett as advanced settings.
-- Support for Wireguard.
-- Support for qBittorrent themes (VueTorrent).
-- Check [[https://filebrowser.org/][Filebrowser]].
-- Investigate [[https://github.com/FlareSolverr/FlareSolverr][FlareSolverr]].
-- Check [[https://github.com/Unpackerr/unpackerr][unpackerr]].
-- Check [[https://github.com/Flemmarr/Flemmarr][Flemarr]].
-- Add a dashboard like [[https://docs.organizr.app/installation/installing-organizr][Organizr]].
-- Add [[https://www.portainer.io/][Portainer]].
-- Check usenet.
+- [X] Support for multiple media servers (Jellyfin and Plex).
+- [ ] Readd Jackett as advanced settings.
+- [ ] Support for Wireguard.
+- [ ] Support for qBittorrent themes (VueTorrent).
+- [ ] Check [[https://filebrowser.org/][Filebrowser]].
+- [ ] Investigate [[https://github.com/FlareSolverr/FlareSolverr][FlareSolverr]].
+- [ ] Check [[https://github.com/Unpackerr/unpackerr][unpackerr]].
+- [ ] Check [[https://github.com/Flemmarr/Flemmarr][Flemarr]].
+- [ ] Add a dashboard like [[https://docs.organizr.app/installation/installing-organizr][Organizr]].
+- [ ] Add [[https://www.portainer.io/][Portainer]].
+- [ ] Check usenet.
 
 * Special thanks
 :PROPERTIES:
@@ -153,7 +157,9 @@ Just let them know YAMS sent you there 😎
 - [[https://info.linuxserver.io/][linuxserver.io]] for their amazing docker images
 - [[https://sonarr.tv/][Sonarr]]
 - [[https://radarr.video/][Radarr]]
+- [[https://jellyfin.org/][Jellyfin]]
 - [[https://emby.media/][Emby]]
+- [[https://www.plex.tv/][Plex]]
 - [[https://www.qbittorrent.org/][qBittorrent]]
 - [[https://www.bazarr.media/][Bazarr]]
 - [[https://github.com/Prowlarr/Prowlarr][Prowlarr]]
