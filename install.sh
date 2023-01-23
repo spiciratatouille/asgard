@@ -207,7 +207,9 @@ sed -i -e "s;<media_folder>;$media_folder;g" $filename
 
 # Set media_service
 sed -i -e "s;<media_service>;$media_service;g" $filename
-sed -i -e "s;<media_service_port>;$media_service_port;g" $filename
+if [ $media_service == "plex" ]; then
+    sed -i -e "s;#network_mode: host # plex;network_mode: host # plex;g" $filename
+fi
 
 # Set config folder
 sed -i -e "s;<install_location>;$install_location;g" $filename

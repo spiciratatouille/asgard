@@ -5,6 +5,7 @@ services:
   <media_service>:
     image: lscr.io/linuxserver/<media_service>
     container_name: <media_service>
+    #network_mode: host # plex
     environment:
       - PUID=<your_PUID>
       - PGID=<your_PGID>
@@ -14,7 +15,7 @@ services:
       - <media_folder>/tvshows:/data/tvshows
       - <install_location>/config/<media_service>:/config
     ports:
-      - <media_service_port>:<media_service_port>
+      - 8096:8096
     restart: unless-stopped
 
   # qBitorrent is used to download torrents
@@ -81,7 +82,7 @@ services:
   # Prowlarr is our torrent indexer/searcher. Sonarr/Radarr use Prowlarr as a
   # source
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:latest
+    image: lscr.io/linuxserver/prowlarr
     container_name: prowlarr
     environment:
       - PUID=<your_PUID>
