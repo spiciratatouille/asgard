@@ -117,5 +117,6 @@ services:
   # Watchtower is going to keep our instances updated
   watchtower:
     image: containrrr/watchtower
+    container_name: watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
