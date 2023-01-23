@@ -117,7 +117,7 @@ echo
 echo "Time to choose your media service."
 echo "Your media service is the one responsible for serving your files to your network."
 echo "By default, YAMS support 3 media services:"
-echo "- jellyfin (recommended, easier, with the most functionalities)"
+echo "- jellyfin (recommended, easier)"
 echo "- emby"
 echo "- plex (advanced, always online, slower)"
 read -p "Choose your media service [jellyfin]: " media_service
