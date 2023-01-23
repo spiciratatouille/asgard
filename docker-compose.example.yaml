@@ -113,3 +113,9 @@ services:
       - OPENVPN_USER=<vpn_user>
       - OPENVPN_PASSWORD=<vpn_password>
       - SERVER_COUNTRIES=<vpn_country>
+
+  # Watchtower is going to keep our instances updated
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
