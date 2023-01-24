@@ -132,7 +132,7 @@ They are the ones doing the real work, I just created a docker-compose file and 
 
 Just let them know YAMS sent you there 😎
 
-* todo [1/11]
+* todo [1/14]
 :PROPERTIES:
 :ID:       eba4712e-fa8a-42c8-bc32-b593141c99a4
 :END:
@@ -149,6 +149,9 @@ Just let them know YAMS sent you there 😎
 - [ ] Add a dashboard like [[https://docs.organizr.app/installation/installing-organizr][Organizr]].
 - [ ] Add [[https://www.portainer.io/][Portainer]].
 - [ ] Check usenet.
+- [ ] Check [[https://github.com/Fallenbagel/jellyseerr][jellyseer]] or [[https://ombi.io/][Omby]].
+- [ ] Consider adding [[https://lidarr.audio/][Lidarr]] and [[https://readarr.com/][Readarr]].
+- [ ] Check [[https://github.com/hrfee/jfa-go][Jellyfin Accounts Go]].
 
 * Special thanks
 :PROPERTIES:
