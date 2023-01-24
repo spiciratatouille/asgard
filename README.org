@@ -136,22 +136,22 @@ Just let them know YAMS sent you there 😎
 :PROPERTIES:
 :ID:       eba4712e-fa8a-42c8-bc32-b593141c99a4
 :END:
-(not in order)
+(in order)
 
 - [X] Support for multiple media servers (Jellyfin and Plex). [Done ✅]
 - [ ] Add update functionality (~yams update~). [Working on it 👨‍💻]
-- [ ] Readd Jackett as advanced settings.
-- [ ] Support for Wireguard.
+- [ ] Add Jackett as an "yams extra".
+- [ ] Add [[https://www.portainer.io/][Portainer]].
+- [ ] Add [[https://github.com/Fallenbagel/jellyseerr][jellyseer]] or [[https://ombi.io/][Omby]].
+- [ ] Add a dashboard like [[https://docs.organizr.app/installation/installing-organizr][Organizr]].
+- [ ] Consider adding [[https://lidarr.audio/][Lidarr]] and [[https://readarr.com/][Readarr]].
 - [ ] Support for qBittorrent themes (VueTorrent).
+- [ ] Support for Wireguard.
 - [ ] Check [[https://filebrowser.org/][Filebrowser]].
 - [ ] Investigate [[https://github.com/FlareSolverr/FlareSolverr][FlareSolverr]].
 - [ ] Check [[https://github.com/Unpackerr/unpackerr][unpackerr]].
 - [ ] Check [[https://github.com/Flemmarr/Flemmarr][Flemarr]].
-- [ ] Add a dashboard like [[https://docs.organizr.app/installation/installing-organizr][Organizr]].
-- [ ] Add [[https://www.portainer.io/][Portainer]].
 - [ ] Check usenet.
-- [ ] Check [[https://github.com/Fallenbagel/jellyseerr][jellyseer]] or [[https://ombi.io/][Omby]].
-- [ ] Consider adding [[https://lidarr.audio/][Lidarr]] and [[https://readarr.com/][Readarr]].
 - [ ] Check [[https://github.com/hrfee/jfa-go][Jellyfin Accounts Go]].
 
 * Special thanks
