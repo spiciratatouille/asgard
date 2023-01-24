@@ -52,7 +52,7 @@ fi
 
 if [ $option == "check-vpn" ]; then
     echo "Getting your qBittorrent IP..."
-    qbittorrent_ip=$($dc exec qbittorrent sh -c "curl -s ifconfig.me");
+    qbittorrent_ip=$(docker exec qbittorrent sh -c "curl -s ifconfig.me");
     echo "$qbittorrent_ip"
     echo "Your country in qBittorrent is $($dc exec -it qbittorrent sh -c 'curl -s https://am.i.mullvad.net/country')"
     echo
