@@ -119,7 +119,7 @@ echo "Your media service is the one responsible for serving your files to your n
 echo "By default, YAMS support 3 media services:"
 echo "- jellyfin (recommended, easier)"
 echo "- emby"
-echo "- plex (advanced, always online, slower)"
+echo "- plex (advanced, always online)"
 read -p "Choose your media service [jellyfin]: " media_service
 media_service=${media_service:-"jellyfin"}
 media_service=$(echo "$media_service" | sed -e 's/\(.*\)/\L\1/')
