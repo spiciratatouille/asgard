@@ -132,13 +132,14 @@ They are the ones doing the real work, I just created a docker-compose file and 
 
 Just let them know YAMS sent you there 😎
 
-* todo [1/14]
+* todo [1/15]
 :PROPERTIES:
 :ID:       eba4712e-fa8a-42c8-bc32-b593141c99a4
 :END:
 (not in order)
 
-- [X] Support for multiple media servers (Jellyfin and Plex).
+- [X] Support for multiple media servers (Jellyfin and Plex). [Done ✅]
+- [ ] Add update functionality (~yams update~). [Working on it 👨‍💻]
 - [ ] Readd Jackett as advanced settings.
 - [ ] Support for Wireguard.
 - [ ] Support for qBittorrent themes (VueTorrent).
