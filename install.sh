@@ -18,6 +18,8 @@ echo "===================================================="
 echo "Welcome to YAMS (Yet Another Media Server)"
 echo "Installation process should be really quick"
 echo "We just need you to answer some questions"
+echo "We are going to ask for your sudo password in the end"
+echo "To finish the installation of the CLI"
 echo "===================================================="
 echo ""
 
@@ -69,6 +71,10 @@ echo "Checking prerequisites..."
 check_dependencides "docker"
 check_dependencides "docker-compose"
 
+if [[ "$EUID" = 0 ]]; then
+    send_error_message "YAMS has to run without sudo! Please, run it again with regular permissions"
+fi
+
 # ============================================================================================
 
 # ============================================================================================
@@ -78,7 +84,7 @@ read -p "Where do you want to install the docker-compose file? [/opt/yams]: " in
 
 # Checking if the install_location exists
 install_location=${install_location:-/opt/yams}
-[[ -f $install_location ]] || mkdir -p $install_location || send_error_message "There was an error with your install location! (Maybe you forgot to run with sudo?)"
+[[ -f $install_location ]] || mkdir -p $install_location || send_error_message "There was an error with your install location! Make sure the directory exists and the user \"$USER\" has permissions on it"
 install_location=$(realpath $install_location)
 filename="$install_location/docker-compose.yaml"
 
@@ -194,7 +200,7 @@ echo "Configuring the docker-compose file for the user \"$username\" on \"$insta
 echo ""
 echo "Copying $filename..."
 
-cp docker-compose.example.yaml $filename || send_error_message "You need to have permissions on the folder! (Maybe you forgot to run with sudo?)"
+cp docker-compose.example.yaml $filename || send_error_message "Your user ($USER) needs to have permissions on the installation folder!"
 
 # Set PUID
 sed -i -e "s/<your_PUID>/$puid/g" $filename
