@@ -44,7 +44,7 @@ check_dependencides() {
         read -p "Do you want YAMS to install docker and docker-compose? IT ONLY WORKS ON DEBIAN AND UBUNTU! [y/N]: " install_docker
         install_docker=${install_docker:-"n"}
 
-        if [ $install_docker == "y" ]; then
+        if [ "$install_docker" == "y" ]; then
             bash ./docker.sh
         else
             send_error_message "Install docker and docker-compose and come back later!"
@@ -84,8 +84,8 @@ read -p "Where do you want to install the docker-compose file? [/opt/yams]: " in
 
 # Checking if the install_location exists
 install_location=${install_location:-/opt/yams}
-[[ -f $install_location ]] || mkdir -p $install_location || send_error_message "There was an error with your install location! Make sure the directory exists and the user \"$USER\" has permissions on it"
-install_location=$(realpath $install_location)
+[[ -f "$install_location" ]] || mkdir -p "$install_location" || send_error_message "There was an error with your install location! Make sure the directory exists and the user \"$USER\" has permissions on it"
+install_location=$(realpath "$install_location")
 filename="$install_location/docker-compose.yaml"
 
 read -p "What's the user that is going to own the media server files? [$USER]: " username
@@ -93,9 +93,9 @@ read -p "What's the user that is going to own the media server files? [$USER]: "
 # Checking that the user exists
 username=${username:-$USER}
 
-if id -u $username &>/dev/null; then
-    puid=$(id -u $username);
-    pgid=$(id -g $username);
+if id -u "$username" &>/dev/null; then
+    puid=$(id -u "$username");
+    pgid=$(id -g "$username");
 else
     send_error_message "The user \"$username\" doesn't exist!"
 fi
@@ -105,14 +105,14 @@ media_folder=${media_folder:-"/srv/media"}
 
 # Checking that the media folder exists
 
-realpath $media_folder &>/dev/null || send_error_message "There was an error with your media folder! The directory \"$media_folder\" does not exist!"
+realpath "$media_folder" &>/dev/null || send_error_message "There was an error with your media folder! The directory \"$media_folder\" does not exist!"
 
-media_folder=$(realpath $media_folder)
+media_folder=$(realpath "$media_folder")
 
-read -p "Are you sure your media folder is $media_folder? [y/N]: " media_folder_correct
+read -p "Are you sure your media folder is \"$media_folder\"? [y/N]: " media_folder_correct
 media_folder_correct=${media_folder_correct:-"n"}
 
-if [ $media_folder_correct == "n" ]; then
+if [ "$media_folder_correct" == "n" ]; then
     send_error_message "Media folder is not correct. Please, fix it and run the script again"
 fi
 
@@ -150,7 +150,7 @@ echo "You can check the supported VPN list here: https://yams.media/advanced/vpn
 read -p "Do you want to configure a VPN? [Y/n]: " setup_vpn
 setup_vpn=${setup_vpn:-"y"}
 
-if [ $setup_vpn == "y" ]; then
+if [ "$setup_vpn" == "y" ]; then
     read -p "What's your VPN service? (with spaces) [mullvad]: " vpn_service
     vpn_service=${vpn_service:-"mullvad"}
     echo
@@ -201,38 +201,38 @@ echo "Configuring the docker-compose file for the user \"$username\" on \"$insta
 echo ""
 echo "Copying $filename..."
 
-cp docker-compose.example.yaml $filename || send_error_message "Your user ($USER) needs to have permissions on the installation folder!"
+cp docker-compose.example.yaml "$filename" || send_error_message "Your user ($USER) needs to have permissions on the installation folder!"
 
 # Set PUID
-sed -i -e "s/<your_PUID>/$puid/g" $filename
+sed -i -e "s/<your_PUID>/$puid/g" "$filename"
 
 # Set PGID
-sed -i -e "s/<your_PGID>/$pgid/g" $filename
+sed -i -e "s/<your_PGID>/$pgid/g" "$filename"
 
 # Set media_folder
-sed -i -e "s;<media_folder>;$media_folder;g" $filename
+sed -i -e "s;<media_folder>;$media_folder;g" "$filename"
 
 # Set media_service
-sed -i -e "s;<media_service>;$media_service;g" $filename
-if [ $media_service == "plex" ]; then
-    sed -i -e "s;#network_mode: host # plex;network_mode: host # plex;g" $filename
+sed -i -e "s;<media_service>;$media_service;g" "$filename"
+if [ "$media_service" == "plex" ]; then
+    sed -i -e "s;#network_mode: host # plex;network_mode: host # plex;g" "$filename"
 fi
 
 # Set config folder
-sed -i -e "s;<install_location>;$install_location;g" $filename
+sed -i -e "s;<install_location>;$install_location;g" "$filename"
 
 # Set VPN
-if [ $setup_vpn == "y" ]; then
-    sed -i -e "s;<vpn_service>;$vpn_service;g" $filename
-    sed -i -e "s;<vpn_user>;$vpn_user;g" $filename
-    sed -i -e "s;<vpn_country>;$vpn_country;g" $filename
-    sed -i -e "s;<vpn_password>;$vpn_password;g" $filename
-    sed -i -e "s;#network_mode: \"service:gluetun\";network_mode: \"service:gluetun\";g" $filename
-    sed -i -e "s;ports: # qbittorrent;#port: # qbittorrent;g" $filename
-    sed -i -e "s;- 8080:8080 # qbittorrent;#- 8080:8080 # qbittorrent;g" $filename
-    sed -i -e "s;#- 8080:8080/tcp # gluetun;- 8080:8080/tcp # gluetun;g" $filename
+if [ "$setup_vpn" == "y" ]; then
+    sed -i -e "s;<vpn_service>;$vpn_service;g" "$filename"
+    sed -i -e "s;<vpn_user>;$vpn_user;g" "$filename"
+    sed -i -e "s;<vpn_country>;$vpn_country;g" "$filename"
+    sed -i -e "s;<vpn_password>;$vpn_password;g" "$filename"
+    sed -i -e "s;#network_mode: \"service:gluetun\";network_mode: \"service:gluetun\";g" "$filename"
+    sed -i -e "s;ports: # qbittorrent;#port: # qbittorrent;g" "$filename"
+    sed -i -e "s;- 8080:8080 # qbittorrent;#- 8080:8080 # qbittorrent;g" "$filename"
+    sed -i -e "s;#- 8080:8080/tcp # gluetun;- 8080:8080/tcp # gluetun;g" "$filename"
     if echo "nordvpn perfect privacy private internet access vyprvpn wevpn windscribe" | grep -qw "$vpn_service"; then
-        sed -i -e "s;SERVER_COUNTRIES;SERVER_REGIONS;g" $filename
+        sed -i -e "s;SERVER_COUNTRIES;SERVER_REGIONS;g" "$filename"
     fi
 fi
 
@@ -246,7 +246,7 @@ send_success_message "Everything installed correctly! 🎉"
 echo "Running the server..."
 echo "This is going to take a while..."
 
-docker-compose -f $filename up -d
+docker-compose -f "$filename" up -d
 # ============================================================================================
 
 # ============================================================================================
@@ -255,10 +255,10 @@ docker-compose -f $filename up -d
 
 send_success_message "We need your sudo password to install the yams CLI and correct permissions..."
 sudo cp yams /usr/local/bin/yams && sudo chmod +x /usr/local/bin/yams
-[[ -f $media_folder ]] || sudo mkdir -p $media_folder || send_error_message "There was an error with your install location!"
-sudo chown -R $puid:$pgid $media_folder
-[[ -f $install_location/config ]] || sudo mkdir -p $install_location/config
-sudo chown -R $puid:$pgid $install_location
+[[ -f "$media_folder" ]] || sudo mkdir -p "$media_folder" || send_error_message "There was an error with your install location!"
+sudo chown -R "$puid":"$pgid" "$media_folder"
+[[ -f $install_location/config ]] || sudo mkdir -p "$install_location/config"
+sudo chown -R "$puid":"$pgid" "$install_location"
 
 printf "\033c"
 
