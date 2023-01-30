@@ -143,7 +143,7 @@ Just let them know YAMS sent you there 😎
 - [X] Add [[https://www.portainer.io/][Portainer]]. [Done ✅]
 - [ ] Add update functionality (~yams update~). [Working on it 👨‍💻]
 - [ ] Consider moving to Alpine images (might not be possible without a big change on the docker-compose file).
-- [ ] Add multiple download clients to choose from
+- [ ] Add multiple download clients to choose from.
 - [ ] Add Jackett as an "yams extra".
 - [ ] Add [[https://github.com/Fallenbagel/jellyseerr][jellyseer]] or [[https://ombi.io/][Omby]].
 - [ ] Add a dashboard like [[https://docs.organizr.app/installation/installing-organizr][Organizr]].
