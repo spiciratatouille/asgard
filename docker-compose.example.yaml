@@ -116,6 +116,18 @@ services:
       - SERVER_COUNTRIES=<vpn_country>
     restart: unless-stopped
 
+  # Portainer helps debugging and monitors the containers
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    ports:
+      - 9000:9000
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - <install_location>/config/portainer:/data
+    restart: unless-stopped
+
   # Watchtower is going to keep our instances updated
   watchtower:
     image: containrrr/watchtower

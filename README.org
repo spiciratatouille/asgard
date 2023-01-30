@@ -20,6 +20,7 @@ This script installs the following software:
 - [[https://www.bazarr.media/][Bazarr]]
 - [[https://github.com/Prowlarr/Prowlarr][Prowlarr]]
 - [[https://github.com/qdm12/gluetun][gluetun]]
+- [[https://www.portainer.io/][Portainer]]
 
 With this combination, you can create a fully functional media server that is going to download,
 categorize, subtitle and serve your favorite shows and movies.
@@ -132,17 +133,17 @@ They are the ones doing the real work, I just created a docker-compose file and 
 
 Just let them know YAMS sent you there 😎
 
-* todo [1/16]
+* todo [2/16]
 :PROPERTIES:
 :ID:       eba4712e-fa8a-42c8-bc32-b593141c99a4
 :END:
 (in order)
 
 - [X] Support for multiple media servers (Jellyfin and Plex). [Done ✅]
+- [X] Add [[https://www.portainer.io/][Portainer]]. [Done ✅]
 - [ ] Add update functionality (~yams update~). [Working on it 👨‍💻]
 - [ ] Consider moving to Alpine images (might not be possible without a big change on the docker-compose file).
 - [ ] Add Jackett as an "yams extra".
-- [ ] Add [[https://www.portainer.io/][Portainer]].
 - [ ] Add [[https://github.com/Fallenbagel/jellyseerr][jellyseer]] or [[https://ombi.io/][Omby]].
 - [ ] Add a dashboard like [[https://docs.organizr.app/installation/installing-organizr][Organizr]].
 - [ ] Consider adding [[https://lidarr.audio/][Lidarr]] and [[https://readarr.com/][Readarr]].
@@ -168,6 +169,7 @@ Just let them know YAMS sent you there 😎
 - [[https://www.qbittorrent.org/][qBittorrent]]
 - [[https://www.bazarr.media/][Bazarr]]
 - [[https://github.com/Prowlarr/Prowlarr][Prowlarr]]
+- [[https://www.portainer.io/][Portainer]]
 - My friends:
   + [[https://github.com/xploshioOn][xploshioOn]]
   + [[https://github.com/norlis][norlis]]
