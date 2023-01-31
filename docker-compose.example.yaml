@@ -64,6 +64,38 @@ services:
       - 7878:7878
     restart: unless-stopped
 
+  # Lidarr is used to query, add downloads to the download queue and index Music
+  # https://lidarr.audio/
+  lidarr:
+    image: lscr.io/linuxserver/lidarr
+    container_name: lidarr
+    environment:
+      - PUID=<your_PUID>
+      - PGID=<your_PGID>
+    volumes:
+      - <media_folder>/music:/music
+      - <media_folder>/downloads:/downloads
+      - <install_location>/config/lidarr:/config
+    ports:
+      - 8686:8686
+    restart: unless-stopped
+
+  # Readarr is used to query, add downloads to the download queue and index Audio and Ebooks
+  # https://readarr.com/
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=<your_PUID>
+      - PGID=<your_PGID>
+    volumes:
+      - <media_folder>/books:/books
+      - <media_folder>/downloads:/downloads
+      - <install_location>/config/readarr:/config
+    ports:
+      - 8787:8787
+    restart: unless-stopped
+
   # Bazarr is used to download and categorize subtitles
   bazarr:
     image: lscr.io/linuxserver/bazarr
