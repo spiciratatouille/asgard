@@ -137,7 +137,7 @@ They are the ones doing the real work, I just created a docker-compose file and 
 
 Just let them know YAMS sent you there 😎
 
-* todo [2/17]
+* todo [3/17]
 :PROPERTIES:
 :ID:       eba4712e-fa8a-42c8-bc32-b593141c99a4
 :END:
@@ -151,7 +151,7 @@ Just let them know YAMS sent you there 😎
 - [ ] Add Jackett as an "yams extra".
 - [ ] Add [[https://github.com/Fallenbagel/jellyseerr][jellyseer]] or [[https://ombi.io/][Omby]].
 - [ ] Add a dashboard like [[https://docs.organizr.app/installation/installing-organizr][Organizr]].
-- [X] Consider adding [[https://lidarr.audio/][Lidarr]] and [[https://readarr.com/][Readarr]].
+- [X] Consider adding [[https://lidarr.audio/][Lidarr]] and [[https://readarr.com/][Readarr]]. [Done ✅] Thanks to [[https://gitlab.com/jataggart][Jay Taggart]]!
 - [ ] Support for qBittorrent themes (VueTorrent).
 - [ ] Support for Wireguard.
 - [ ] Check [[https://filebrowser.org/][Filebrowser]].
