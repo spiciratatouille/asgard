@@ -57,6 +57,8 @@ running_services_location() {
     echo "qBittorrent: http://$host_ip:8080/"
     echo "Radarr: http://$host_ip:7878/"
     echo "Sonarr: http://$host_ip:8989/"
+    echo "Lidarr: http://$host_ip:8686/"
+    echo "Readarr: http://$host_ip:8787/"
     echo "Prowlarr: http://$host_ip:9696/"
     echo "Bazarr: http://$host_ip:6767/"
     echo "$media_service: http://$host_ip:$media_service_port/"

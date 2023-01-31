@@ -13,6 +13,8 @@ Website: [[https://yams.media][https://yams.media]]
 This script installs the following software:
 - [[https://sonarr.tv/][Sonarr]]
 - [[https://radarr.video/][Radarr]]
+- [[https://lidarr.audio][Lidarr]]
+- [[https://readarr.com/][Readarr]]
 - [[https://jellyfin.org/][Jellyfin]]
 - [[https://emby.media/][Emby]]
 - [[https://www.plex.tv/][Plex]]
@@ -23,7 +25,7 @@ This script installs the following software:
 - [[https://www.portainer.io/][Portainer]]
 
 With this combination, you can create a fully functional media server that is going to download,
-categorize, subtitle and serve your favorite shows and movies.
+categorize, subtitle and serve your favorite shows, movies, audio and books.
 
 * Features
 :PROPERTIES:
@@ -60,6 +62,8 @@ Before installing, make sure you have:
   you choose ~/srv/media~, the script is going to create the following folders:
   + ~/srv/media/tv~: For your TV shows
   + ~/srv/media/movies~: For your movies
+  + ~/srv/media/music~: For your music
+  + ~/srv/media/books~: For your books
   + ~/srv/media/downloads~: For your torrent downloads
   + ~/srv/media/blackhole~: For your torrents blackhole
 - *A regular user to run and own the media files*: You shouldn't use ~root~ for this user, but I'm not
@@ -147,7 +151,7 @@ Just let them know YAMS sent you there 😎
 - [ ] Add Jackett as an "yams extra".
 - [ ] Add [[https://github.com/Fallenbagel/jellyseerr][jellyseer]] or [[https://ombi.io/][Omby]].
 - [ ] Add a dashboard like [[https://docs.organizr.app/installation/installing-organizr][Organizr]].
-- [ ] Consider adding [[https://lidarr.audio/][Lidarr]] and [[https://readarr.com/][Readarr]].
+- [X] Consider adding [[https://lidarr.audio/][Lidarr]] and [[https://readarr.com/][Readarr]].
 - [ ] Support for qBittorrent themes (VueTorrent).
 - [ ] Support for Wireguard.
 - [ ] Check [[https://filebrowser.org/][Filebrowser]].
