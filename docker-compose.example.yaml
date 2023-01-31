@@ -83,7 +83,7 @@ services:
   # Readarr is used to query, add downloads to the download queue and index Audio and Ebooks
   # https://readarr.com/
   readarr:
-    image: lscr.io/linuxserver/readarr
+    image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
     environment:
       - PUID=<your_PUID>
