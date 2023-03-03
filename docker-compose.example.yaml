@@ -35,6 +35,7 @@ services:
     #network_mode: "service:gluetun"
 
   # Sonarr is used to query, add downloads to the download queue and index TV shows
+  # https://sonarr.tv/
   sonarr:
     image: lscr.io/linuxserver/sonarr
     container_name: sonarr
@@ -50,6 +51,7 @@ services:
     restart: unless-stopped
 
   # Radarr is used to query, add downloads to the download queue and index Movies
+  # https://radarr.video/
   radarr:
     image: lscr.io/linuxserver/radarr
     container_name: radarr
@@ -97,6 +99,7 @@ services:
     restart: unless-stopped
 
   # Bazarr is used to download and categorize subtitles
+  # https://www.bazarr.media/
   bazarr:
     image: lscr.io/linuxserver/bazarr
     container_name: bazarr
@@ -111,8 +114,8 @@ services:
       - 6767:6767
     restart: unless-stopped
 
-  # Prowlarr is our torrent indexer/searcher. Sonarr/Radarr use Prowlarr as a
-  # source
+  # Prowlarr is our torrent indexer/searcher. Sonarr/Radarr use Prowlarr as a source
+  # https://prowlarr.com/
   prowlarr:
     image: lscr.io/linuxserver/prowlarr
     container_name: prowlarr
@@ -164,6 +167,8 @@ services:
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
+    environment:
+      - WATCHTOWER_CLEANUP=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
