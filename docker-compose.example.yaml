@@ -127,7 +127,7 @@ services:
 
   # Gluetun is our VPN, so you can download torrents safely
   gluetun:
-    image: qmcgaw/gluetun
+    image: qmcgaw/gluetun:pr-1268
     container_name: gluetun
     cap_add:
       - NET_ADMIN
