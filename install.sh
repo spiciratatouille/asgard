@@ -63,6 +63,7 @@ running_services_location() {
     echo "Bazarr: http://$host_ip:6767/"
     echo "$media_service: http://$host_ip:$media_service_port/"
     echo "Portainer: http://$host_ip:9000/"
+    echo "Jellyseerr: http://$host_ip:5055/"
 }
 
 # ============================================================================================

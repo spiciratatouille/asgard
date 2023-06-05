@@ -184,5 +184,5 @@ services:
     ports:
       - 5055:5055
     volumes:
-      - <install_location>/config/jellyseerr:/config
+      - <install_location>/config/jellyseerr:/app/config
     restart: unless-stopped
