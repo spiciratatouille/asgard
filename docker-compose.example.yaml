@@ -185,4 +185,4 @@ services:
       - 5055:5055
     volumes:
       - <install_location>/config/jellyseerr:/config
-    retart: unless-stopped
+    restart: unless-stopped
