@@ -173,3 +173,16 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
+
+  # Jellyseerr handles requests for new content
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=America/Kentucky/Louisville
+    ports:
+      - 5055:5055
+    volumes:
+      - <install_location>/config/jellyseerr:/config
+    retart: unless-stopped
