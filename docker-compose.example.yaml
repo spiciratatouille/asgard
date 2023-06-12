@@ -1,5 +1,10 @@
 version: "3"
 
+networks:
+  default:
+  external: true
+  name: asgard
+
 services:
   # <media_service> is used to serve your media to the client devices
   <media_service>:
@@ -14,8 +19,6 @@ services:
       - <media_folder>/movies:/data/movies
       - <media_folder>/tvshows:/data/tvshows
       - <install_location>/config/<media_service>:/config
-    ports:
-      - 8096:8096
     restart: unless-stopped
 
   # qBitorrent is used to download torrents
@@ -30,9 +33,8 @@ services:
       - <media_folder>/downloads:/downloads
       - <install_location>/config/qbittorrent:/config
     restart: unless-stopped
-    ports: # qbittorrent
-      - 8080:8080 # qbittorrent
-    #network_mode: "service:gluetun"
+    networks:
+      - service:gluetun
 
   # Sonarr is used to query, add downloads to the download queue and index TV shows
   # https://sonarr.tv/
@@ -46,8 +48,6 @@ services:
       - <media_folder>/tvshows:/tv
       - <media_folder>/downloads:/downloads
       - <install_location>/config/sonarr:/config
-    ports:
-      - 8989:8989
     restart: unless-stopped
 
   # Radarr is used to query, add downloads to the download queue and index Movies
@@ -62,40 +62,6 @@ services:
       - <media_folder>/movies:/movies
       - <media_folder>/downloads:/downloads
       - <install_location>/config/radarr:/config
-    ports:
-      - 7878:7878
-    restart: unless-stopped
-
-  # Lidarr is used to query, add downloads to the download queue and index Music
-  # https://lidarr.audio/
-  lidarr:
-    image: lscr.io/linuxserver/lidarr
-    container_name: lidarr
-    environment:
-      - PUID=<your_PUID>
-      - PGID=<your_PGID>
-    volumes:
-      - <media_folder>/music:/music
-      - <media_folder>/downloads:/downloads
-      - <install_location>/config/lidarr:/config
-    ports:
-      - 8686:8686
-    restart: unless-stopped
-
-  # Readarr is used to query, add downloads to the download queue and index Audio and Ebooks
-  # https://readarr.com/
-  readarr:
-    image: lscr.io/linuxserver/readarr:develop
-    container_name: readarr
-    environment:
-      - PUID=<your_PUID>
-      - PGID=<your_PGID>
-    volumes:
-      - <media_folder>/books:/books
-      - <media_folder>/downloads:/downloads
-      - <install_location>/config/readarr:/config
-    ports:
-      - 8787:8787
     restart: unless-stopped
 
   # Bazarr is used to download and categorize subtitles
@@ -110,8 +76,6 @@ services:
       - <media_folder>/movies:/movies
       - <media_folder>/tvshows:/tv
       - <install_location>/config/bazarr:/config
-    ports:
-      - 6767:6767
     restart: unless-stopped
 
   # Prowlarr is our torrent indexer/searcher. Sonarr/Radarr use Prowlarr as a source
@@ -124,8 +88,6 @@ services:
       - PGID=<your_PGID>
     volumes:
       - <install_location>/config/prowlarr:/config
-    ports:
-      - 9696:9696
     restart: unless-stopped
 
   # Gluetun is our VPN, so you can download torrents safely
@@ -156,8 +118,6 @@ services:
   portainer:
     image: portainer/portainer-ce
     container_name: portainer
-    ports:
-      - 9000:9000
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -181,8 +141,24 @@ services:
     environment:
       - LOG_LEVEL=debug
       - TZ=America/Kentucky/Louisville
-    ports:
-      - 5055:5055
     volumes:
       - <install_location>/config/jellyseerr:/app/config
+    restart: unless-stopped
+
+  # Nginx Proxy Manager - reverse proxy with LetsEncrypt
+  npm:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    environment:
+      - TZ=America/Kentucky/Louisville
+      - DB_SQLITE_FILE=/config/database.sqlite
+      - DISABLE_IPV6=true
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    volumes:
+      - <install_location>/config/npm/config:/config
+      - <install_location>/config/npm/letsencrypt:/etc/letsencrypt
+      - <install_location>/config/npm/data:/data
     restart: unless-stopped
