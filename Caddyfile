@@ -1,0 +1,29 @@
+{
+    email asgard@asgard.loseyourip.com
+}
+jellyfin.asgard.loseyourip.com {
+    reverse_proxy jellyfin:8096
+}
+qbittorrent.asgard.loseyourip.com {
+    reverse_proxy qbittorrent:8080
+}
+sonarr.asgard.loseyourip.com {
+    reverse_proxy sonarr:8989
+}
+radarr.asgard.loseyourip.com {
+    reverse_proxy radarr:7878
+}
+bazarr.asgard.loseyourip.com {
+    reverse_proxy bazarr:6767
+}
+prowlarr.asgard.loseyourip.com {
+    reverse_proxy prowlarr:9696
+}
+portainer.asgard.loseyourip.com {
+    reverse_proxy portainer:9000
+}
+jellyseerr.asgard.loseyourip.com {
+    reverse_proxy jellyseerr:5055
+}
+
+asgard.loseyourip.com

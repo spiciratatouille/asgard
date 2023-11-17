@@ -186,3 +186,17 @@ services:
     volumes:
       - <install_location>/config/jellyseerr:/app/config
     restart: unless-stopped
+
+  # Caddy handles reverse proxy and ssl
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp
+    volumes:
+      - <install_location>/config/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - <install_location>/config/caddy/data:/data
+      - <install_location>/config/caddy/config:/config
+    restart: unless-stopped
